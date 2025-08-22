@@ -23,17 +23,14 @@ public class Clock : MonoBehaviour {
     int seconds;
     float msecs;
     public float targetmin = 59;
-    GameObject pointerSeconds;
-    GameObject pointerMinutes;
-    GameObject pointerHours;
+    [SerializeField]GameObject pointerSeconds;
+    [SerializeField]GameObject pointerMinutes;
+    [SerializeField]GameObject pointerHours;
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------------------
 void Start() 
 {
-    pointerSeconds = transform.Find("rotation_axis_pointer_seconds").gameObject;
-    pointerMinutes = transform.Find("rotation_axis_pointer_minutes").gameObject;
-    pointerHours   = transform.Find("rotation_axis_pointer_hour").gameObject;
 
     msecs = 0.0f;
     seconds = 0;
