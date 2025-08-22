@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 705507994}
+  m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1122,79 +1122,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155418139}
   m_Mesh: {fileID: 36615426860712353, guid: 292448fefcaf91c4e9b2542cfde7e13b, type: 3}
---- !u!1001 &169231139
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 13.154179
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20.49281
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1294892128559850198, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_Intensity
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_Name
-      value: Stalker at night PAck trust me its pack dont worry PLEAAE trust me bro
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1166391808790955616, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_Intensity
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8912049515002365231, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
-      propertyPath: m_Intensity
-      value: 5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 048d96da95c7a7048b0e0afab4ac0e8b, type: 3}
 --- !u!1 &178084410
 GameObject:
   m_ObjectHideFlags: 0
@@ -8335,7 +8262,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 4c00fa9a93ea4754c8be984a34511087, type: 2}
+  sharedProfile: {fileID: 11400000, guid: d8a86e6b6f293b3498dc459f1f771b8c, type: 2}
 --- !u!4 &1657423916
 Transform:
   m_ObjectHideFlags: 0
@@ -10567,7 +10494,6 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 1079277631}
   - {fileID: 1657423916}
-  - {fileID: 169231139}
   - {fileID: 629953022}
   - {fileID: 1389620372}
   - {fileID: 1000667307}

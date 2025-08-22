@@ -342,7 +342,7 @@ MonoBehaviour:
   active: 1
   distance:
     m_OverrideState: 1
-    m_Value: 0.101
+    m_Value: 0.125
   cropToFit:
     m_OverrideState: 1
     m_Value: 1
@@ -380,10 +380,10 @@ MonoBehaviour:
     m_Value: 0
   quality:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   clamp:
     m_OverrideState: 1
     m_Value: 0.05
@@ -400,14 +400,22 @@ MonoBehaviour:
   m_Name: VHSEffectComponent
   m_EditorClassIdentifier: 
   active: 1
+  <displayName>k__BackingField: 
   intensity:
+    <debugId>k__BackingField: intensity
     m_OverrideState: 1
     m_Value: 1
   noiseColor:
+    <debugId>k__BackingField: noiseColor
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value:
+      r: 1
+      g: 1
+      b: 1
+      a: 1
     hdr: 0
   scanlinesHeight:
+    <debugId>k__BackingField: scanlinesHeight
     m_OverrideState: 1
     m_Value: 0.96
 --- !u!114 &-1029970979475661688
@@ -510,7 +518,6 @@ MonoBehaviour:
   - {fileID: 9180289398388210985}
   - {fileID: -1029970979475661688}
   - {fileID: -714626383910656350}
-  - {fileID: -1172321608874534371}
 --- !u!114 &760466241589143932
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -554,7 +561,7 @@ MonoBehaviour:
   active: 1
   temperature:
     m_OverrideState: 1
-    m_Value: 20
+    m_Value: 15
   tint:
     m_OverrideState: 1
     m_Value: 0
@@ -696,7 +703,7 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.351
+    m_Value: 0.375
   response:
     m_OverrideState: 1
     m_Value: 0.8
@@ -736,7 +743,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   highQualityFiltering:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   downscale:
     m_OverrideState: 1
     m_Value: 0
@@ -745,11 +752,11 @@ MonoBehaviour:
     m_Value: 6
   dirtTexture:
     m_OverrideState: 1
-    m_Value: {fileID: 2800000, guid: 879d051bae1aad442ae36954045f8c1b, type: 3}
+    m_Value: {fileID: 0}
     dimension: 1
   dirtIntensity:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 0
 --- !u!114 &9180289398388210985
 MonoBehaviour:
   m_ObjectHideFlags: 3
