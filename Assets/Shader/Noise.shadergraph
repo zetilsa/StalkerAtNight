@@ -154,6 +154,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "40024fbe68984e32b465026786f87e78"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "acd4fa9a45444a98b5a081f1c673fc49"
+                },
+                "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "48c8960b2e1c4ee4b43aa722a3e9474b"
                 },
                 "m_SlotId": 0
@@ -287,20 +301,6 @@
             "m_InputSlot": {
                 "m_Node": {
                     "m_Id": "1e90a1f55c434933a8c4cb55618f652e"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "e61bbe76faea49d5b9f9473ff6acb397"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "acd4fa9a45444a98b5a081f1c673fc49"
                 },
                 "m_SlotId": 0
             }
@@ -836,7 +836,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"d1cccc3d72f183f4aa9b3e7ffff92e6f\",\"type\":3}}",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -1011,10 +1011,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -476.0000305175781,
-            "y": 625.0000610351563,
-            "width": 105.0,
-            "height": 34.0
+            "x": -502.00006103515627,
+            "y": 137.00001525878907,
+            "width": 105.00003051757813,
+            "height": 33.99998474121094
         }
     },
     "m_Slots": [
@@ -2325,7 +2325,7 @@
     "m_ShaderOutputName": "Edge",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 0.5,
+        "x": 0.75,
         "y": 1.0,
         "z": 1.0,
         "w": 1.0
@@ -2388,10 +2388,10 @@
     },
     "m_Color": {
         "color": {
-            "r": 1.0,
-            "g": 1.0,
-            "b": 1.0,
-            "a": 0.20000000298023225
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
+            "a": 1.0
         },
         "mode": 0
     }
@@ -2669,10 +2669,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -648.0000610351563,
-            "y": 136.00003051757813,
-            "width": 208.00006103515626,
-            "height": 433.0000915527344
+            "x": -744.0000610351563,
+            "y": 173.00001525878907,
+            "width": 208.0,
+            "height": 433.0
         }
     },
     "m_Slots": [
@@ -2705,7 +2705,7 @@
         "tex2d"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": true,
+    "m_PreviewExpanded": false,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {
