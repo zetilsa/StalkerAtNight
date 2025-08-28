@@ -3,24 +3,86 @@ using System.Collections;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.UI.Image;
+
+using DG.Tweening;
+
 public class RaycastManager : MonoBehaviour
 {
+    public static RaycastManager Instance { get; private set; }
+
     public int maxDistance;
     public LayerMask layerMask;
     Camera mainCam;
     RaycastHit[] raycastHits = new RaycastHit[1];
     public GameObject Selected;
+
+    GameManager GMinst;
+    PathManager PMgr;
+    PlayerManager PlayerMgr;
+
+    private bool OnComputer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         mainCam = GetComponent<Camera>();
+        GMinst = GameManager.instance;
+        PMgr = PathManager.instance;
+        PlayerMgr = PlayerManager.instance;
     }
 
     // Update is called once per frame
     void Update()
     {
         RaycastHitUpdate();
+    }
+
+    void OnEnable()
+    {
+
+        GameEvents.Instance.OnFirstTransitionComplete += ProcessTransitionEvent;
+        
+    }
+
+
+    public void ProcessTransitionEvent()
+    {
+        if (PlayerMgr.OnComputer == false)
+        {
+            PlayerMgr.OnComputer = true;
+            GMinst.MainFPS.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+            GMinst.MainFPS.playerCanMove = false;
+            GMinst.MainFPS.cameraCanMove = false;
+            GMinst.MainFPS.enableSprint = false;
+
+            GMinst.MainFPS.playerCamera.transform.position = PMgr.Points[0].position;
+            GMinst.MainFPS.playerCamera.transform.rotation = PMgr.Points[0].rotation;
+        }
+    }
+
+    public void ExitCamera()
+    {
+        StartCoroutine(exitcam());
+    }
+    IEnumerator exitcam()
+    {
+        EyeViewManager.Instance.Blink(0.25f);
+        yield return new WaitForSeconds(0.25f);
+        if (PlayerMgr.OnComputer == true)
+        {
+            PlayerMgr.OnComputer = false;
+            GMinst.MainFPS.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+            GMinst.MainFPS.playerCanMove = true;
+            GMinst.MainFPS.cameraCanMove = true;
+            GMinst.MainFPS.enableSprint = true;
+
+            GMinst.MainFPS.playerCamera.transform.position = new Vector3(0, 0.3f, 0) + GMinst.CameraJoint.position;
+            GMinst.MainFPS.playerCamera.transform.rotation = GMinst.CameraJoint.rotation;
+        }
     }
 
     void RaycastHitUpdate()
