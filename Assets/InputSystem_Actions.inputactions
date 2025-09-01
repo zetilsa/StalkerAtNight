@@ -85,15 +85,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "ExitCamera",
-                    "type": "Button",
-                    "id": "5a8e805c-2cdc-4e32-beda-4242fdd6d60e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -479,17 +470,6 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b9917aab-cf7a-4a81-a9c9-db1a2eafb36b",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ExitCamera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1012,11 +992,11 @@
             ]
         },
         {
-            "name": "New action map",
+            "name": "Computer",
             "id": "d36608a1-0b06-4afb-afe1-bd34d47ba03e",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "ExitCamera",
                     "type": "Button",
                     "id": "d4c00199-ee01-4a60-8415-3a5f1f012782",
                     "expectedControlType": "",
@@ -1029,11 +1009,11 @@
                 {
                     "name": "",
                     "id": "27f0d56b-c2a8-4775-870e-af23073bffc0",
-                    "path": "",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "ExitCamera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

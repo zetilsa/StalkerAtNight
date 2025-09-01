@@ -5,18 +5,14 @@ using System;
 public class GameEvents : MonoBehaviour
 {
     // Make it a singleton for easy access from other scripts
-    public static GameEvents Instance;
+    public static GameEvents Instance { get; private set; }
 
-    private void Awake()
+    private void Start()
     {
-        if (Instance == null)
-        {
+
             Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        
+
     }
 
     // Declare the delegate (the signature of the method that will be called)
