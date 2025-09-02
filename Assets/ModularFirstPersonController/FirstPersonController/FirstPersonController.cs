@@ -20,7 +20,9 @@ public class FirstPersonController : MonoBehaviour
 
     #region Camera Movement Variables
 
+    public bool useCinemachine;
     public Camera playerCamera;
+    public Transform CameraJoint;
 
     public float fov = 60f;
     public bool invertCamera = false;
@@ -223,7 +225,14 @@ public class FirstPersonController : MonoBehaviour
             pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
 
             transform.localEulerAngles = new Vector3(0, yaw, 0);
-            playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+            if (useCinemachine == true)
+            {
+                CameraJoint.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+            }
+            else
+            {
+                playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+            }
         }
 
         #region Camera Zoom
@@ -560,7 +569,9 @@ public class FirstPersonController : MonoBehaviour
         GUILayout.Label("Camera Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
         EditorGUILayout.Space();
 
+        fpc.useCinemachine = EditorGUILayout.ToggleLeft(new GUIContent("Use Cinemachine", "memastikan player ini menggunakan Cinemachine atau tidak"), fpc.useCinemachine);
         fpc.playerCamera = (Camera)EditorGUILayout.ObjectField(new GUIContent("Camera", "Camera attached to the controller."), fpc.playerCamera, typeof(Camera), true);
+        fpc.CameraJoint = (Transform)EditorGUILayout.ObjectField(new GUIContent("CinemachineCamera", "Cinemachine Camera"),fpc.CameraJoint, typeof(Transform), true);
         fpc.fov = EditorGUILayout.Slider(new GUIContent("Field of View", "The camera’s view angle. Changes the player camera directly."), fpc.fov, fpc.zoomFOV, 179f);
         fpc.cameraCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Camera Rotation", "Determines if the camera is allowed to move."), fpc.cameraCanMove);
 

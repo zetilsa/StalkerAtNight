@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using DG.Tweening;
-
+using UnityEngine.Playables;
+using Unity.VisualScripting;
+using UnityEngine.Animations;
 public class RaycastManager : MonoBehaviour
 {
     public static RaycastManager Instance { get; private set; }
@@ -15,6 +17,7 @@ public class RaycastManager : MonoBehaviour
     Camera mainCam;
     RaycastHit[] raycastHits = new RaycastHit[1];
     GameObject Selected;
+    GameObject tempselect;
 
     GameManager GMinst;
     PathManager PMgr;
@@ -24,6 +27,7 @@ public class RaycastManager : MonoBehaviour
     OnComputerControl OCC;
 
     private bool OnComputer;
+    private bool onTransition;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -97,8 +101,16 @@ public class RaycastManager : MonoBehaviour
             GMinst.MainFPS.cameraCanMove = true;
             GMinst.MainFPS.enableSprint = true;
 
-            GMinst.MainFPS.playerCamera.transform.position = new Vector3(0, 0.3f, 0) + GMinst.CameraJoint.position;
-            GMinst.MainFPS.playerCamera.transform.rotation = GMinst.CameraJoint.rotation;
+            if (GMinst.MainFPS.useCinemachine == false)
+            {
+                GMinst.MainFPS.playerCamera.transform.position = new Vector3(0, 0.3f, 0) + GMinst.CameraJoint.position;
+                GMinst.MainFPS.playerCamera.transform.rotation = GMinst.CameraJoint.rotation;
+            }
+            else
+            {
+                GMinst.MainFPS.CameraJoint.transform.position = new Vector3(0, 0.3f, 0) + GMinst.CameraJoint.position;
+                GMinst.MainFPS.CameraJoint.transform.rotation = GMinst.CameraJoint.rotation;
+            }
         }
     }
         
@@ -109,16 +121,53 @@ public class RaycastManager : MonoBehaviour
         
         if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
         {
-            
-            switch (hit.collider.tag)
-            {
-                case "PC":
-                    if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
-                    {
-                        StartCoroutine(EnterPC());
-                    }
-                    break;
+            Selected = hit.collider.gameObject;
+            foreach (string tag in Selected.GetComponent<TagSystemAkeh>().tag) {
+                switch (tag)
+                {
+                    case "PC":
+                        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
+                        {
+                            StartCoroutine(EnterPC());
+                        }
+                        break;
 
+                    case "Closet":
+                        foreach (var output in Selected.GetComponent<PlayableDirector>().playableAsset.outputs)
+                        {
+
+                            if (output.streamName == "Animation Track (1)")
+                            {
+                                if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
+                                {
+                                    // Bind the object to this track
+                                    GMinst.MainFPS.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+                                    GMinst.MainFPS.playerCanMove = false;
+                                    GMinst.MainFPS.cameraCanMove = false;
+                                    GMinst.MainFPS.enableSprint = false;
+
+                                    GMinst.MainFPS.CameraJoint.DOMove(Selected.GetComponent<ClosetProperties>().CameraPoint.position,.3f);
+                                    GMinst.MainFPS.CameraJoint.DORotateQuaternion(Selected.GetComponent<ClosetProperties>().CameraPoint.rotation, .3f).OnComplete(() =>
+                                    {
+                                        Selected.GetComponent<PlayableDirector>().Play();
+                                        onTransition = true;
+
+                                        tempselect = Selected;
+                                        InvokeRepeating("lockcameratransform", 0, 0.01f);
+                                        
+                                        GMinst.MainFPS.CameraJoint.DOMove(Selected.GetComponent<ClosetProperties>().CameraPoint.position, .1f);
+                                        GMinst.MainFPS.CameraJoint.DORotateQuaternion(Selected.GetComponent<ClosetProperties>().CameraPoint.rotation, .1f);
+                                        
+                                        Selected.GetComponent<PlayableDirector>().stopped += closetplayabledirectorstopped;
+                                    });
+
+                                    
+                                }
+                            }
+                        }
+                        break;
+
+                }
             }
 
         }
@@ -141,9 +190,33 @@ public class RaycastManager : MonoBehaviour
             GMinst.MainFPS.cameraCanMove = false;
             GMinst.MainFPS.enableSprint = false;
 
-            GMinst.MainFPS.playerCamera.transform.position = PMgr.Points[0].position;
-            GMinst.MainFPS.playerCamera.transform.rotation = PMgr.Points[0].rotation;
+            if (GMinst.MainFPS.useCinemachine == false)
+            {
+                GMinst.MainFPS.playerCamera.transform.position = PMgr.Points[0].position;
+                GMinst.MainFPS.playerCamera.transform.rotation = PMgr.Points[0].rotation;
+            }
+            else
+            {
+                GMinst.MainFPS.CameraJoint.transform.position = PMgr.Points[0].position;
+                GMinst.MainFPS.CameraJoint.transform.rotation = PMgr.Points[0].rotation;
+            }
         }
 
+    }
+
+
+
+
+
+
+    void lockcameratransform()
+    {
+        GMinst.MainFPS.CameraJoint.transform.position = tempselect.GetComponent<ClosetProperties>().CameraPoint.position;
+        GMinst.MainFPS.CameraJoint.transform.rotation = tempselect.GetComponent<ClosetProperties>().CameraPoint.rotation;
+    }
+    void closetplayabledirectorstopped(PlayableDirector director)
+    {
+        onTransition = false;
+        CancelInvoke();
     }
 }
