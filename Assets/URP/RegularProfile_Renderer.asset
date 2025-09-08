@@ -16,7 +16,7 @@ MonoBehaviour:
   m_Settings:
     AOMethod: 1
     Downsample: 1
-    AfterOpaque: 0
+    AfterOpaque: 1
     Source: 1
     NormalSamples: 1
     Intensity: 0.1
@@ -76,7 +76,7 @@ MonoBehaviour:
     overrideStencilState: 0
     stencilReference: 0
     stencilCompareFunction: 8
-    passOperation: 2
+    passOperation: 6
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
