@@ -8,14 +8,24 @@ public class GameManager : MonoBehaviour
     public FirstPersonController MainFPS;
     public Transform CameraJoint;
     bool started;
-
+    public InputSystem_Actions MainInput;
     PlayableDirector PlayableDirector;
     void OnEnable()
     {
-        if(instance == null)
+        MainInput = new InputSystem_Actions();
+        MainInput.Enable();
+        if (instance == null)
         {
             instance = this;
         }
+
+    }
+    private void OnDisable()
+    {
+        MainInput.Disable();
+    }
+    private void Awake()
+    {
 
     }
     private void Start()
@@ -58,6 +68,7 @@ public class GameManager : MonoBehaviour
     }
     void TimelineStopped(PlayableDirector pd)
     {
+
         print("timelinestopped");
         PlayerManager.instance.Transition = false;
     }

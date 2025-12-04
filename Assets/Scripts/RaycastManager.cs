@@ -8,6 +8,8 @@ using DG.Tweening;
 using UnityEngine.Playables;
 using Unity.VisualScripting;
 using UnityEngine.Animations;
+
+using UnityEngine.InputSystem;
 public class RaycastManager : MonoBehaviour
 {
     public static RaycastManager Instance { get; private set; }
@@ -29,7 +31,7 @@ public class RaycastManager : MonoBehaviour
     private bool OnComputer;
     private bool onTransition;
 
-
+    public bool EnableRaycast;
 
     string[] RaycastTag;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -53,7 +55,11 @@ public class RaycastManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHitUpdate();
+        if(EnableRaycast == true)
+        {
+            RaycastHitUpdate();
+        }
+        
         ControllerUpdate();
     }
 
@@ -120,72 +126,79 @@ public class RaycastManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
         {
             Selected = hit.collider.gameObject;
-            RaycastTag = Selected.GetComponent<TagSystemAkeh>().tag;
-            try
+            if (Selected.TryGetComponent<TagSystemAkeh>(out TagSystemAkeh tagSystemAkeh))
             {
-                foreach (string tag in RaycastTag) {
-                    switch (tag)
+                RaycastTag = tagSystemAkeh.tag;
+                    foreach (string tag in RaycastTag)
                     {
-                        case "PC":
-                            if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
-                            {
-                                StartCoroutine(EnterPC());
-                            }
-                            break;
-
-                        case "Closet":
-                            foreach (var output in Selected.GetComponent<PlayableDirector>().playableAsset.outputs)
-                            {
-
-                                if (output.streamName == "Animation Track (1)")
+                        switch (tag)
+                        {
+                            case "PC":
+                                if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
                                 {
-                                    if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0) && PlayerManager.instance.Transition == false && onTransition == false)
+                                    StartCoroutine(EnterPC());
+                                }
+                                break;
+
+                            case "Closet":
+                                /*foreach (var output in Selected.GetComponent<PlayableDirector>().playableAsset.outputs)
+                                {
+
+                                    if (output.streamName == "Animation Track (1)")
                                     {
-                                        // Bind the object to this track
-                                        PlayerMgr.ChangeControlState(0);
-                                        tempselect = Selected;
-
-                                        if (PlayerMgr.IsHiding == true)
+                                        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0) && PlayerManager.instance.Transition == false && onTransition == false)
                                         {
-                                            onTransition = true;
-                                            
-                                            PlayerManager.instance.Transition = true;
-                                            GMinst.MainFPS.CameraJoint.GetComponent<LockCameraTransform>().enabled = true;
+                                            // Bind the object to this track
+                                            PlayerMgr.ChangeControlState(0);
+                                            tempselect = Selected;
 
-                                            tempselect.GetComponent<PlayableDirector>().playableAsset = tempselect.GetComponent<MultiTimelineAsset>().timelineAssets[1];
-                                            tempselect.GetComponent<PlayableDirector>().Play();
-
-                                        }
-                                        else if (PlayerMgr.IsHiding == false)
-                                        {
-                                            GMinst.MainFPS.CameraJoint.DOMove(tempselect.GetComponent<ClosetProperties>().CameraPoint.position, .3f).OnComplete(() =>
+                                            if (PlayerMgr.IsHiding == true)
                                             {
                                                 onTransition = true;
+
                                                 PlayerManager.instance.Transition = true;
                                                 GMinst.MainFPS.CameraJoint.GetComponent<LockCameraTransform>().enabled = true;
-                                            });
-                                            GMinst.MainFPS.CameraJoint.DORotateQuaternion(tempselect.GetComponent<ClosetProperties>().CameraPoint.rotation, .25f).OnComplete(() =>
-                                            {
-                                                tempselect.GetComponent<PlayableDirector>().playableAsset = tempselect.GetComponent<MultiTimelineAsset>().timelineAssets[0];
+
+                                                tempselect.GetComponent<PlayableDirector>().playableAsset = tempselect.GetComponent<MultiTimelineAsset>().timelineAssets[1];
                                                 tempselect.GetComponent<PlayableDirector>().Play();
 
-                                            });
+                                            }
+                                            else if (PlayerMgr.IsHiding == false)
+                                            {
+                                                GMinst.MainFPS.CameraJoint.DOMove(tempselect.GetComponent<ClosetProperties>().CameraPoint.position, .3f).OnComplete(() =>
+                                                {
+                                                    onTransition = true;
+                                                    PlayerManager.instance.Transition = true;
+                                                    GMinst.MainFPS.CameraJoint.GetComponent<LockCameraTransform>().enabled = true;
+                                                });
+                                                GMinst.MainFPS.CameraJoint.DORotateQuaternion(tempselect.GetComponent<ClosetProperties>().CameraPoint.rotation, .25f).OnComplete(() =>
+                                                {
+                                                    tempselect.GetComponent<PlayableDirector>().playableAsset = tempselect.GetComponent<MultiTimelineAsset>().timelineAssets[0];
+                                                    tempselect.GetComponent<PlayableDirector>().Play();
+
+                                                });
+                                            }
+
+
+
+
                                         }
-
-
-
-
                                     }
                                 }
-                            }
-                            break;
+                                */
+                                if (Selected.GetComponent<ClosetManager>().Hidestate == false)
+                                {
+                                    if (GMinst.MainInput.Player.Interact.triggered && PlayerManager.instance.Transition == false && onTransition == false)
+                                    {
+                                        PlayerMgr.ChangeControlState(0);
+                                        Selected.GetComponent<ClosetManager>().Hide(true);
+                                    }
+                                }
+                                break;
 
+
+                        }
                     }
-                }
-            }
-            finally
-            {
-
             }
 
         }
@@ -193,6 +206,7 @@ public class RaycastManager : MonoBehaviour
         {
             Selected = null;
         }
+
     }
 
 

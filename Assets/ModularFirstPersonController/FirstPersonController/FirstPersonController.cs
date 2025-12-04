@@ -37,7 +37,7 @@ public class FirstPersonController : MonoBehaviour
     public Color crosshairColor = Color.white;
 
     // Internal Variables
-    private float yaw = 0.0f;
+    private float yaw = -90f;
     private float pitch = 0.0f;
     private Image crosshairObject;
 
@@ -209,30 +209,42 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if(cameraCanMove)
         {
-            yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
-
+            yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
+            
             if (!invertCamera)
             {
                 pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
             }
             else
             {
-                // Inverted Y
                 pitch += mouseSensitivity * Input.GetAxis("Mouse Y");
             }
 
             // Clamp pitch between lookAngle
             pitch = Mathf.Clamp(pitch, -maxLookAngle, maxLookAngle);
 
-            transform.localEulerAngles = new Vector3(0, yaw, 0);
+            Quaternion targetyaw = Quaternion.Euler(0, yaw,0);
+
+            transform.localRotation = Quaternion.Lerp(
+                transform.localRotation,
+                targetyaw,
+                Time.deltaTime * 10f
+            );
             if (useCinemachine == true)
             {
-                CameraJoint.transform.localEulerAngles = new Vector3(pitch, 0, 0);
+                Quaternion target = Quaternion.Euler(pitch, 0, 0);
+
+                CameraJoint.localRotation = Quaternion.Lerp(
+                    CameraJoint.localRotation,
+                    target,
+                    Time.deltaTime * 10f
+                );
             }
             else
             {
                 playerCamera.transform.localEulerAngles = new Vector3(pitch, 0, 0);
             }
+
         }
 
         #region Camera Zoom

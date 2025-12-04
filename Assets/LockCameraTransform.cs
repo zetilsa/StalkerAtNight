@@ -1,10 +1,11 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class LockCameraTransform : MonoBehaviour
 {
 
     public Transform Target;
-
+    [SerializeField] Transform PlayerPoint;
     private void OnEnable()
     {
         InvokeRepeating("Lock", 0, 0.01f);
@@ -13,6 +14,7 @@ public class LockCameraTransform : MonoBehaviour
     private void OnDisable()
     {
         CancelInvoke("Lock");
+
     }
 
     void Lock()
@@ -24,5 +26,9 @@ public class LockCameraTransform : MonoBehaviour
     public void Disable()
     {
         enabled = false;
+        if (PlayerManager.instance.IsHiding == false)
+        {
+            transform.DOLocalMove(PlayerPoint.localPosition, .25f);
+        }
     }
 }
