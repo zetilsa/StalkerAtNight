@@ -9,6 +9,7 @@ public class ClosetManager : MonoBehaviour
     [SerializeField] MultiTimelineAsset MTA;
     [SerializeField] ClosetProperties CP;
     Transform ClosetInitPoint;
+    [SerializeField] Transform CamPoint;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -48,13 +49,15 @@ public class ClosetManager : MonoBehaviour
             ClosetInitPoint = CP.CameraPoint[1];
         }
         
-        GameManager.instance.MainFPS.CameraJoint.DOMove(ClosetInitPoint.position, .3f).OnComplete(() =>
+        GameManager.instance.MainFPS.CameraJoint.DOMove(ClosetInitPoint.position, .5f).OnComplete(() =>
         {
             PD.Play();
+            PD.Evaluate();
+            GameManager.instance.MainFPS.CameraJoint.GetComponent<LockCameraTransform>().Target = CamPoint;
             GameManager.instance.MainFPS.CameraJoint.GetComponent<LockCameraTransform>().enabled = true;
             
         });
-        GameManager.instance.MainFPS.CameraJoint.DORotateQuaternion(ClosetInitPoint.rotation, .25f);
+        GameManager.instance.MainFPS.CameraJoint.DORotateQuaternion(ClosetInitPoint.rotation, .5f);
 
     }
     // Update is called once per frame

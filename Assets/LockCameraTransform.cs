@@ -8,7 +8,7 @@ public class LockCameraTransform : MonoBehaviour
     [SerializeField] Transform PlayerPoint;
     private void OnEnable()
     {
-        InvokeRepeating("Lock", 0, 0.01f);
+        InvokeRepeating("Lock", 0, 0.001f);
     }
 
     private void OnDisable()
@@ -28,7 +28,7 @@ public class LockCameraTransform : MonoBehaviour
         enabled = false;
         if (PlayerManager.instance.IsHiding == false)
         {
-            transform.DOLocalMove(PlayerPoint.localPosition, .25f);
+            transform.DOLocalMove(PlayerPoint.localPosition, .5f);
         }
     }
 }

@@ -13,9 +13,10 @@ using UnityEngine.InputSystem;
 public class RaycastManager : MonoBehaviour
 {
     public static RaycastManager Instance { get; private set; }
-
+    public float currentRaycastDistance;
     public int maxDistance;
     public LayerMask layerMask;
+    public LayerMask layermaskexclude;
     Camera mainCam;
     RaycastHit[] raycastHits = new RaycastHit[1];
     GameObject Selected;
@@ -32,6 +33,7 @@ public class RaycastManager : MonoBehaviour
     private bool onTransition;
 
     public bool EnableRaycast;
+    bool raycastfirsttime;
 
     string[] RaycastTag;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -122,17 +124,78 @@ public class RaycastManager : MonoBehaviour
     {
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit = new RaycastHit();
-        
-        if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
+        RaycastHit hitray = new RaycastHit();
+        if (Physics.Raycast(ray, out hitray, 100,layermaskexclude))
         {
-            Selected = hit.collider.gameObject;
-            if (Selected.TryGetComponent<TagSystemAkeh>(out TagSystemAkeh tagSystemAkeh))
+            Vector3 cameraPos = Camera.main.transform.position;
+            Vector3 hitPoint = hitray.point;
+
+            currentRaycastDistance = Vector3.Distance(cameraPos, hitPoint);
+            if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
             {
-                RaycastTag = tagSystemAkeh.tag;
+                //set Selected Object for first time and check if the hit target was interactable, and then call CrosshairManager to change crosshair state
+                if (Selected != hit.collider.gameObject)
+                {
+                    Selected = hit.collider.gameObject;
+                    if (Selected.TryGetComponent<TagSystemAkeh>(out TagSystemAkeh tagsyst))
+                    {
+                        RaycastTag = tagsyst.tag;
+                        foreach (string tag in RaycastTag)
+                        {
+                            print("Debug12124asd" + tag);
+                            if (tag == "Interactable" && raycastfirsttime == false)
+                            {
+                                raycastfirsttime = true;
+                                CrosshairManager.instance.SetDetect(true);
+                            }
+                            else if (tag != "Interactable" && raycastfirsttime == false)
+                            {
+                                raycastfirsttime = true;
+                                CrosshairManager.instance.SetDetect(false);
+                            }
+                            switch (tag)
+                            {
+                                case "Interactable":
+                                    print("Debug12124");
+                                    CrosshairManager.instance.SetDetect(true);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        CrosshairManager.instance.SetDetect(false);
+                    }
+                }
+
+                //checking any interactable hit object by checking TagSystemAkeh
+                if (Selected.TryGetComponent<TagSystemAkeh>(out TagSystemAkeh tagSystemAkeh))
+                {
+                    RaycastTag = tagSystemAkeh.tag;
                     foreach (string tag in RaycastTag)
                     {
                         switch (tag)
                         {
+                            case "Drawer":
+                                if (GMinst.MainInput.Player.Interact.triggered && PlayerManager.instance.Transition == false && onTransition == false)
+                                {
+                                    Selected.GetComponent<Drawer>().Interact();
+                                }
+                                    break;
+                            case "LightSwitch":
+                                if (GMinst.MainInput.Player.Interact.triggered && PlayerManager.instance.Transition == false && onTransition == false)
+                                {
+                                    Selected.GetComponent<MainLightSwitch>().Interact();
+                                }
+                                    break;
+                            case "Door":
+                                if (GMinst.MainInput.Player.Interact.triggered && PlayerManager.instance.Transition == false && onTransition == false)
+                                {
+                                    Selected.GetComponent<InteractablePintu>().Interact();
+                                }
+                                break;
                             case "PC":
                                 if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
                                 {
@@ -199,12 +262,18 @@ public class RaycastManager : MonoBehaviour
 
                         }
                     }
-            }
+                }
+                else
+                {
+                    CrosshairManager.instance.SetDetect(false);
+                }
 
-        }
-        else
-        {
-            Selected = null;
+            }
+            else
+            {
+                Selected = null;
+                CrosshairManager.instance.SetDetect(false);
+            }
         }
 
     }
