@@ -45,7 +45,7 @@ Material:
     m_Floats:
     - _Edge1: -8.61
     - _Edge2: 5.19
-    - _NoisePower: -1.58
+    - _NoisePower: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ScanlineScrollSpeed: 0.1
@@ -53,8 +53,9 @@ Material:
     - _scanlinescrollspeed: 0.1
     m_Colors:
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
-    - _NoiseColor: {r: 5.992157, g: 5.992157, b: 5.992157, a: 0}
-    - _NoiseSize: {r: 1, g: 2, b: 0, a: 0}
+    - _Emission2: {r: 36.329647, g: 36.329647, b: 36.329647, a: 1}
+    - _NoiseColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0}
+    - _NoiseSize: {r: 0.75, g: 1.5, b: 0, a: 0}
     - _Speed: {r: 4, g: -19, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

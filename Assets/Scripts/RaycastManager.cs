@@ -179,11 +179,17 @@ public class RaycastManager : MonoBehaviour
                         switch (tag)
                         {
                             case "Drawer":
-                                if (GMinst.MainInput.Player.Interact.triggered && PlayerManager.instance.Transition == false && onTransition == false)
+                                if (Input.GetMouseButton(0))
                                 {
-                                    Selected.GetComponent<Drawer>().Interact();
+                                    Selected.GetComponent<Drawer>().Interact(true);
+                                    GMinst.MainFPS.cameraCanMove = false;
                                 }
-                                    break;
+                                else
+                                if (Input.GetMouseButtonUp(0))
+                                {
+                                    GMinst.MainFPS.cameraCanMove = true;
+                                }
+                                break;
                             case "LightSwitch":
                                 if (GMinst.MainInput.Player.Interact.triggered && PlayerManager.instance.Transition == false && onTransition == false)
                                 {
