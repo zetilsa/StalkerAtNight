@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "StalkerAtNight.sln"
+    "dotnet.defaultSolution": "StalkerAtNight.slnx"
 }
