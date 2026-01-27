@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-String-Tables-English (United States) (en-US)
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: Localization-String-Tables-English (United States) (en-US)
+  m_GUID: fe79498d91bc5e543916670a394dff68
+  m_SerializeEntries:
+  - m_GUID: 3c292f5a54dd4724ab2f6fa7b87036f5
+    m_Address: LocalizationTable_en-US
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-US
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+    <IsFolder>k__BackingField: 0
+    <BundleFileId>k__BackingField: 
+    <IsSubAsset>k__BackingField: 0
+    m_CheckedIsScene: 0
+    m_IsScene: 0
+    m_CurrentHash:
+      'bytes[0]': 244
+      'bytes[1]': 182
+      'bytes[2]': 11
+      'bytes[3]': 188
+      'bytes[4]': 34
+      'bytes[5]': 247
+      'bytes[6]': 123
+      'bytes[7]': 212
+      'bytes[8]': 237
+      'bytes[9]': 75
+      'bytes[10]': 114
+      'bytes[11]': 191
+      'bytes[12]': 94
+      'bytes[13]': 1
+      'bytes[14]': 162
+      'bytes[15]': 240
+    m_cachedAssetPath: Assets/locale/table/LocalizationTable_en-US.asset
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 1f2647e09152bd24dae4ee7cb2374503, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 626ba8de0108ea54494f875b6bc77c5e, type: 2}
+    - {fileID: 11400000, guid: 9a6a9ba7c87bec3448ba2ffab9ec0c7d, type: 2}
+  m_FolderEntryCache: []
+  <FlaggedDuringContentUpdateRestriction>k__BackingField: 0
+  m_CurrentHash:
+    'bytes[0]': 220
+    'bytes[1]': 62
+    'bytes[2]': 185
+    'bytes[3]': 84
+    'bytes[4]': 174
+    'bytes[5]': 223
+    'bytes[6]': 158
+    'bytes[7]': 132
+    'bytes[8]': 103
+    'bytes[9]': 138
+    'bytes[10]': 179
+    'bytes[11]': 205
+    'bytes[12]': 92
+    'bytes[13]': 107
+    'bytes[14]': 61
+    'bytes[15]': 30

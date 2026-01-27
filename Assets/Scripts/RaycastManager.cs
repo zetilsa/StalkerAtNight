@@ -178,6 +178,19 @@ public class RaycastManager : MonoBehaviour
                     {
                         switch (tag)
                         {
+                            case "Curtain":
+                                print("here curtain");
+                                if (Input.GetMouseButtonDown(0))
+                                {
+                                    Selected.GetComponent<Animator>().SetTrigger("Open");
+                                    PlayerMgr.ChangeControlState(2);
+
+                                } else if (Input.GetMouseButtonUp(0))
+                                {
+                                    Selected.GetComponent<Animator>().SetTrigger("Close");
+                                    PlayerMgr.ChangeControlState(3);
+                                }
+                                    break;
                             case "Drawer":
                                 if (Input.GetMouseButton(0))
                                 {
@@ -187,6 +200,7 @@ public class RaycastManager : MonoBehaviour
                                 else
                                 if (Input.GetMouseButtonUp(0))
                                 {
+                                    print("debugdrawer");
                                     GMinst.MainFPS.cameraCanMove = true;
                                 }
                                 break;

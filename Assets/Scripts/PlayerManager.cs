@@ -68,6 +68,20 @@ public class PlayerManager : MonoBehaviour
             GetComponent<FirstPersonController>().enableSprint = true;
             RaycastManager.Instance.EnableRaycast = true;
         }
+        else if (state == 2)
+        {
+            GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+            GetComponent<FirstPersonController>().playerCanMove = false;
+            GetComponent<FirstPersonController>().cameraCanMove = false;
+            GetComponent<FirstPersonController>().enableSprint = false;
+        }
+        else if (state == 3)
+        {
+            GetComponent<FirstPersonController>().playerCanMove = true;
+            GetComponent<FirstPersonController>().cameraCanMove = true;
+            GetComponent<FirstPersonController>().enableSprint = true;
+        }
     }
-
 }
+
+
