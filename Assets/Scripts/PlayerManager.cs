@@ -50,7 +50,7 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    public void ChangeControlState(int state)
+    public void ChangeControlState(int state,bool cursorvisibility,bool cursorlock)
     {
         print("called");
         if (state == 0)
@@ -81,6 +81,31 @@ public class PlayerManager : MonoBehaviour
             GetComponent<FirstPersonController>().cameraCanMove = true;
             GetComponent<FirstPersonController>().enableSprint = true;
         }
+
+        if (cursorvisibility == true)
+        {
+            Cursor.visible = true;
+        }
+        else if (cursorvisibility == false)
+        {
+            Cursor.visible = false;
+        }
+
+        if(cursorlock == true)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else if(cursorlock == false)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+
+    }
+
+    public void SetControl()
+    {
+        ChangeControlState(1, false, true);
     }
 }
 

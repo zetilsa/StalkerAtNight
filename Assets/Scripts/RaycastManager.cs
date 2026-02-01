@@ -85,7 +85,7 @@ public class RaycastManager : MonoBehaviour
         if (PlayerMgr.OnComputer == false)
         {
             PlayerMgr.OnComputer = true;
-            PlayerMgr.ChangeControlState(0);
+            PlayerMgr.ChangeControlState(0, true,false);
 
             GMinst.MainFPS.playerCamera.transform.position = PMgr.Points[0].position;
             GMinst.MainFPS.playerCamera.transform.rotation = PMgr.Points[0].rotation;
@@ -100,13 +100,14 @@ public class RaycastManager : MonoBehaviour
     }
     IEnumerator exitcam()
     {
+        CCTVManager.instance.OnUnUse();
         EyeViewManager.Instance.Blink(0.25f);
         yield return new WaitForSeconds(0.25f);
         if (PlayerMgr.OnComputer == true)
         {
             PlayerMgr.OnComputer = false;
-            PlayerMgr.ChangeControlState(1);
-
+            PlayerMgr.ChangeControlState(1,false,true);
+            CrosshairManager.instance.SetShow(true);
             if (GMinst.MainFPS.useCinemachine == false)
             {
                 GMinst.MainFPS.playerCamera.transform.position = new Vector3(0, 0.3f, 0) + GMinst.CameraJoint.position;
@@ -117,6 +118,7 @@ public class RaycastManager : MonoBehaviour
                 GMinst.MainFPS.CameraJoint.transform.position = new Vector3(0, 0.3f, 0) + GMinst.CameraJoint.position;
                 GMinst.MainFPS.CameraJoint.transform.rotation = GMinst.CameraJoint.rotation;
             }
+            
         }
     }
         
@@ -183,12 +185,12 @@ public class RaycastManager : MonoBehaviour
                                 if (Input.GetMouseButtonDown(0))
                                 {
                                     Selected.GetComponent<Animator>().SetTrigger("Open");
-                                    PlayerMgr.ChangeControlState(2);
+                                    PlayerMgr.ChangeControlState(2,false,true);
 
                                 } else if (Input.GetMouseButtonUp(0))
                                 {
                                     Selected.GetComponent<Animator>().SetTrigger("Close");
-                                    PlayerMgr.ChangeControlState(3);
+                                    PlayerMgr.ChangeControlState(3, false, true);
                                 }
                                     break;
                             case "Drawer":
@@ -273,7 +275,7 @@ public class RaycastManager : MonoBehaviour
                                 {
                                     if (GMinst.MainInput.Player.Interact.triggered && PlayerManager.instance.Transition == false && onTransition == false)
                                     {
-                                        PlayerMgr.ChangeControlState(0);
+                                        PlayerMgr.ChangeControlState(0,false, true);
                                         Selected.GetComponent<ClosetManager>().Hide(true);
                                     }
                                 }
@@ -306,7 +308,8 @@ public class RaycastManager : MonoBehaviour
         if (PlayerMgr.OnComputer == false)
         {
             PlayerMgr.OnComputer = true;
-            PlayerMgr.ChangeControlState(0);
+            PlayerMgr.ChangeControlState(0,true,false);
+            CrosshairManager.instance.SetShow(false);
 
             if (GMinst.MainFPS.useCinemachine == false)
             {
@@ -318,6 +321,8 @@ public class RaycastManager : MonoBehaviour
                 GMinst.MainFPS.CameraJoint.transform.position = PMgr.Points[0].position;
                 GMinst.MainFPS.CameraJoint.transform.rotation = PMgr.Points[0].rotation;
             }
+
+            CCTVManager.instance.OnUse();
         }
 
     }

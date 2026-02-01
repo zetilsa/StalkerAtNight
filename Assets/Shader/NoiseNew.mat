@@ -26,7 +26,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _NoiseTexture:
-        m_Texture: {fileID: 2800000, guid: d1cccc3d72f183f4aa9b3e7ffff92e6f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 090d9cab614582a4a80e82e30a7209f1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -55,8 +55,8 @@ Material:
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
     - _Emission2: {r: 36.329647, g: 36.329647, b: 36.329647, a: 1}
     - _NoiseColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0}
-    - _NoiseSize: {r: 0.75, g: 1.5, b: 0, a: 0}
-    - _Speed: {r: 4, g: -19, b: 0, a: 0}
+    - _NoiseSize: {r: 1, g: 1.83, b: 0, a: 0}
+    - _Speed: {r: 8, g: -20, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3225326881537633916
