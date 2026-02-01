@@ -30,7 +30,7 @@ public class CCTVManager : MonoBehaviour
         {
             m_MeshRenderer.material.SetFloat("_NoisePower", v);
         }).SetEase(Ease.InOutCubic);
-
+        Initialize();
 
     }
     public void OnUnUse()
