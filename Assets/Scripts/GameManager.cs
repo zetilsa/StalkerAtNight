@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     void OnEnable()
     {
         MainInput = new InputSystem_Actions();
-        MainInput.Enable();
+
         if (instance == null)
         {
             instance = this;
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     }
     private void OnDisable()
     {
-        MainInput.Disable();
+
     }
     private void Awake()
     {

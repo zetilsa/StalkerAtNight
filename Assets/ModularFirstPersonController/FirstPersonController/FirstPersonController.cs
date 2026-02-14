@@ -18,6 +18,9 @@ public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
 
+    private InputSystem_Actions MainInput;
+
+    
     #region Camera Movement Variables
 
     public bool useCinemachine;
@@ -40,6 +43,7 @@ public class FirstPersonController : MonoBehaviour
     private float yaw = -90f;
     private float pitch = 0.0f;
     private Image crosshairObject;
+    private Vector2 LookInput;
 
     #region Camera Zoom Variables
 
@@ -60,7 +64,7 @@ public class FirstPersonController : MonoBehaviour
     public bool playerCanMove = true;
     public float walkSpeed = 5f;
     public float maxVelocityChange = 10f;
-
+    private Vector2 MoveInput;
     // Internal Variables
     private bool isWalking = false;
 
@@ -136,7 +140,7 @@ public class FirstPersonController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-
+        MainInput = GameManager.instance.MainInput;
         crosshairObject = GetComponentInChildren<Image>();
 
         // Set internal variables
@@ -209,15 +213,16 @@ public class FirstPersonController : MonoBehaviour
         // Control camera movement
         if(cameraCanMove)
         {
-            yaw += Input.GetAxis("Mouse X") * mouseSensitivity;
+            LookInput = MainInput.Player.Look.ReadValue<Vector2>();
+            yaw += LookInput.x * mouseSensitivity;
             
             if (!invertCamera)
             {
-                pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
+                pitch -= mouseSensitivity * LookInput.y;
             }
             else
             {
-                pitch += mouseSensitivity * Input.GetAxis("Mouse Y");
+                pitch += mouseSensitivity * LookInput.y;
             }
 
             // Clamp pitch between lookAngle
@@ -392,7 +397,8 @@ public class FirstPersonController : MonoBehaviour
         if (playerCanMove)
         {
             // Calculate how fast we should be moving
-            Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            MoveInput = Vector2.Lerp(MoveInput,MainInput.Player.Move.ReadValue<Vector2>(),Time.deltaTime * 7);
+            Vector3 targetVelocity = new Vector3(MoveInput.x, 0,MoveInput.y);
 
             // Checks if player is walking and isGrounded
             // Will allow head bob

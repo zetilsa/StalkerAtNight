@@ -1,14 +1,35 @@
+using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance {  get; private set; }
-
+    public bool OnBed;
     public bool OnComputer;
     public bool IsHiding;
     public bool Transition;
 
+    public bool enableHoldBreath;
+    public float breath;
+    float breathvalue;
+    [SerializeField] Vector2 breathmodifierRate;
+    float breathmodifier;
+    public bool recoverbreath;
+
+    public float Awareness;
+    public bool recoverawareness;
+    [SerializeField] Vector2 awarenessmodifierRate;
+    [SerializeField] CanvasGroup AwarenessBarUI;
+    [SerializeField] Image AwarenessBarUIFill;
+    public GameObject BedCamera;
+    [SerializeField] CanvasGroup BreathBarUI;
+    [SerializeField] Image BreathBarUIFill;
+    bool BreathUIShowed;
+
+
+    bool Mechanic1;
     void Start()
     {
         if (instance == null)
@@ -18,14 +39,79 @@ public class PlayerManager : MonoBehaviour
         GameManager.instance.MainInput.Player.Interact.performed += Interact;
         GameManager.instance.MainInput.Player.Interact.Enable();
     }
+    private void Update()
+    {
+        if (enableHoldBreath == true)
+        {
+            HoldBreath();
+        }
+        else
+        {
+            recoverbreath = true;
+        }
+        if (Awareness == 100 && AwarenessBarUI.alpha == 1)
+        {
+            AwarenessBarUI.DOFade(0, 1);
+        }
+        else if (Awareness < 100 && AwarenessBarUI.alpha == 0)
+        {
+            AwarenessBarUI.DOFade(1, 1);
+        }
+        if (recoverawareness == true)
+        {
+            Awareness = Mathf.Clamp(Awareness + awarenessmodifierRate.y, 0, 100);
+        }
+        else if(recoverawareness == false)
+        {
+            Awareness = Mathf.Clamp(Awareness + awarenessmodifierRate.x, 0, 100);
+        }
+            if (breath != 100 && BreathUIShowed == false)
+        {
+            BreathUIShowed = true;
+            BreathBarUI.DOFade(1, 1);
+        }
+        else if (breath == 100 && BreathUIShowed == true)
+        {
+            BreathUIShowed = false;
+            BreathBarUI.DOFade(0, 1);
+        }
+        
+        
+            breathvalue = Mathf.Clamp(breathvalue + breathmodifier, 0, 100);
+        breath = Mathf.Round(breathvalue);
+        BreathBarUIFill.fillAmount = breathvalue / 100;
+        AwarenessBarUIFill.fillAmount = Awareness / 100;
+        if (recoverbreath == true)
+        {
+            breathmodifier = breathmodifierRate.y;
+
+        }
+        else if (recoverbreath == false)
+        {
+            breathmodifier = breathmodifierRate.x;
+        }
+    }
+    void HoldBreath()
+    {
+        if (Input.GetButtonDown("Mechanic1"))
+        {
+            recoverbreath = false;
+        }
+        else if (Input.GetButtonUp("Mechanic1"))
+        {
+            recoverbreath = true;
+        }
+
+
+
+    }
     private void OnEnable()
     {
-
+        
     }
     private void OnDisable()
     {
-        GameManager.instance.MainInput.Player.Interact.performed -= Interact;
-        GameManager.instance.MainInput.Player.Interact.Disable();
+
     }
     void Interact(InputAction.CallbackContext context)
     {
@@ -47,40 +133,39 @@ public class PlayerManager : MonoBehaviour
             Transition = false;
 
         }
+
+        else if(id == "Sleep")
+        {
+            recoverawareness = true;
+        }
+        else if(id == "UnSleep")
+        {
+            recoverawareness = false;
+        }
     }
 
 
-    public void ChangeControlState(int state,bool cursorvisibility,bool cursorlock)
+    public void ChangeControlState(bool MainInput,bool PlayerCanMove,bool CameraCanMove,bool EnableSprint,bool EnableRaycast,bool SetVelocityToZero,bool cursorvisibility,bool cursorlock,bool CameraRotationMode)
     {
-        print("called");
-        if (state == 0)
+
+        if (SetVelocityToZero)
         {
             GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-            GetComponent<FirstPersonController>().playerCanMove = false;
-            GetComponent<FirstPersonController>().cameraCanMove = false;
-            GetComponent<FirstPersonController>().enableSprint = false;
-            RaycastManager.Instance.EnableRaycast = false;
         }
-        else if (state == 1)
+        if (MainInput == true)
         {
-            GetComponent<FirstPersonController>().playerCanMove = true;
-            GetComponent<FirstPersonController>().cameraCanMove = true;
-            GetComponent<FirstPersonController>().enableSprint = true;
-            RaycastManager.Instance.EnableRaycast = true;
+            GameManager.instance.MainInput.Player.Enable();
         }
-        else if (state == 2)
+        else if (MainInput == true)
         {
-            GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-            GetComponent<FirstPersonController>().playerCanMove = false;
-            GetComponent<FirstPersonController>().cameraCanMove = false;
-            GetComponent<FirstPersonController>().enableSprint = false;
+            GameManager.instance.MainInput.Player.Disable();
         }
-        else if (state == 3)
-        {
-            GetComponent<FirstPersonController>().playerCanMove = true;
-            GetComponent<FirstPersonController>().cameraCanMove = true;
-            GetComponent<FirstPersonController>().enableSprint = true;
-        }
+        //GetComponent<FirstPersonController>().LocalRotationCamMode = CameraRotationMode;
+        GetComponent<FirstPersonController>().playerCanMove = PlayerCanMove;
+        GetComponent<FirstPersonController>().cameraCanMove = CameraCanMove;
+        GetComponent<FirstPersonController>().enableSprint = EnableSprint;
+        RaycastManager.Instance.EnableRaycast = EnableRaycast;
+
 
         if (cursorvisibility == true)
         {
@@ -103,9 +188,53 @@ public class PlayerManager : MonoBehaviour
 
     }
 
+    public void ChangeMechanicControlState(int ControlType)
+    {
+        switch (ControlType)
+        {
+            case 0:
+                Mechanic1 = !Mechanic1;
+                if (Mechanic1 == true)
+                {
+                    GameManager.instance.MainInput.Mechanic.Mechanic1.Enable();
+                }
+                else if (Mechanic1 == false)
+                {
+                    GameManager.instance.MainInput.Mechanic.Mechanic1.Disable();
+                }
+                break;
+            case 1:
+                enableHoldBreath = !enableHoldBreath;
+                break;
+        }
+
+    }
+
+    public void ChangeMechanicControlState(int ControlType,bool value)
+    {
+        switch (ControlType)
+        {
+            case 0:
+                Mechanic1 = value;
+                if (Mechanic1 == true)
+                {
+                    GameManager.instance.MainInput.Mechanic.Mechanic1.Enable();
+                }
+                else if (Mechanic1 == false)
+                {
+                    GameManager.instance.MainInput.Mechanic.Mechanic1.Disable();
+                }
+                break;
+            case 1:
+                enableHoldBreath = value;
+                break;
+        }
+
+    }
+
     public void SetControl()
     {
-        ChangeControlState(1, false, true);
+        ChangeControlState(true,true,true,true,true,false, false, true,false);
     }
 }
 

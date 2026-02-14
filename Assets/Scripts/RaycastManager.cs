@@ -85,7 +85,7 @@ public class RaycastManager : MonoBehaviour
         if (PlayerMgr.OnComputer == false)
         {
             PlayerMgr.OnComputer = true;
-            PlayerMgr.ChangeControlState(0, true,false);
+            PlayerMgr.ChangeControlState(false,false,false,false,false,true, true,false,false);
 
             GMinst.MainFPS.playerCamera.transform.position = PMgr.Points[0].position;
             GMinst.MainFPS.playerCamera.transform.rotation = PMgr.Points[0].rotation;
@@ -106,7 +106,7 @@ public class RaycastManager : MonoBehaviour
         if (PlayerMgr.OnComputer == true)
         {
             PlayerMgr.OnComputer = false;
-            PlayerMgr.ChangeControlState(1,false,true);
+            PlayerMgr.ChangeControlState(true,true,true,true,true,false,false,true,false);
             CrosshairManager.instance.SetShow(true);
             if (GMinst.MainFPS.useCinemachine == false)
             {
@@ -120,6 +120,7 @@ public class RaycastManager : MonoBehaviour
             }
             
         }
+        
     }
         
         void RaycastHitUpdate()
@@ -180,17 +181,23 @@ public class RaycastManager : MonoBehaviour
                     {
                         switch (tag)
                         {
+                            case "Bed":
+                                if (GMinst.MainInput.Player.Interact.triggered)
+                                {
+                                    StartCoroutine(EnterBed());
+                                }
+                                break;
                             case "Curtain":
                                 print("here curtain");
                                 if (Input.GetMouseButtonDown(0))
                                 {
                                     Selected.GetComponent<Animator>().SetTrigger("Open");
-                                    PlayerMgr.ChangeControlState(2,false,true);
+                                    PlayerMgr.ChangeControlState(true,false,false,false,true,true,false,true,false);
 
                                 } else if (Input.GetMouseButtonUp(0))
                                 {
                                     Selected.GetComponent<Animator>().SetTrigger("Close");
-                                    PlayerMgr.ChangeControlState(3, false, true);
+                                    PlayerMgr.ChangeControlState(true,true,true,true,true,false, false, true,false);
                                 }
                                     break;
                             case "Drawer":
@@ -221,6 +228,7 @@ public class RaycastManager : MonoBehaviour
                             case "PC":
                                 if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(0))
                                 {
+                                    
                                     StartCoroutine(EnterPC());
                                 }
                                 break;
@@ -275,7 +283,7 @@ public class RaycastManager : MonoBehaviour
                                 {
                                     if (GMinst.MainInput.Player.Interact.triggered && PlayerManager.instance.Transition == false && onTransition == false)
                                     {
-                                        PlayerMgr.ChangeControlState(0,false, true);
+                                        PlayerMgr.ChangeControlState(true,false,false,false,true,true,false, true,true);
                                         Selected.GetComponent<ClosetManager>().Hide(true);
                                     }
                                 }
@@ -307,8 +315,9 @@ public class RaycastManager : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         if (PlayerMgr.OnComputer == false)
         {
+
             PlayerMgr.OnComputer = true;
-            PlayerMgr.ChangeControlState(0,true,false);
+            PlayerMgr.ChangeControlState(false,false,false,false,false,true,true,false,false);
             CrosshairManager.instance.SetShow(false);
 
             if (GMinst.MainFPS.useCinemachine == false)
@@ -327,7 +336,22 @@ public class RaycastManager : MonoBehaviour
 
     }
 
+    IEnumerator EnterBed()
+    {
+        EyeViewManager.Instance.Blink(0.25f);
+        yield return new WaitForSeconds(0.25f);
+        if (PlayerMgr.OnBed == false)
+        {
+            PlayerMgr.OnBed = true;
+            PlayerMgr.ChangeControlState(false, false, false, false, false, true, false, true, false);
+            CrosshairManager.instance.SetShow(false);
+            
+            PlayerMgr.BedCamera.SetActive(true);
+            PlayerMgr.DoSomething("Sleep");
+            
+        }
 
+    }
 
 
 

@@ -46,7 +46,7 @@
                     "name": "Crouch",
                     "type": "Button",
                     "id": "27c5f898-bc57-4ee1-8800-db469aca5fe3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -1026,6 +1026,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "ExitCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Mechanic",
+            "id": "a7577b04-49ca-4ac4-bc34-5efbe32a3843",
+            "actions": [
+                {
+                    "name": "Mechanic1",
+                    "type": "Button",
+                    "id": "ecb5a144-b36a-41af-8a0e-52cc9b500f65",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d4414ce9-db64-4c1d-8e08-57283504b40a",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mechanic1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

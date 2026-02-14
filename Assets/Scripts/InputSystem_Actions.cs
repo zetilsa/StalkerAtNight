@@ -132,7 +132,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""27c5f898-bc57-4ee1-8800-db469aca5fe3"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -1116,6 +1116,34 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Mechanic"",
+            ""id"": ""a7577b04-49ca-4ac4-bc34-5efbe32a3843"",
+            ""actions"": [
+                {
+                    ""name"": ""Mechanic1"",
+                    ""type"": ""Button"",
+                    ""id"": ""ecb5a144-b36a-41af-8a0e-52cc9b500f65"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""d4414ce9-db64-4c1d-8e08-57283504b40a"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mechanic1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1207,6 +1235,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         // Computer
         m_Computer = asset.FindActionMap("Computer", throwIfNotFound: true);
         m_Computer_ExitCamera = m_Computer.FindAction("ExitCamera", throwIfNotFound: true);
+        // Mechanic
+        m_Mechanic = asset.FindActionMap("Mechanic", throwIfNotFound: true);
+        m_Mechanic_Mechanic1 = m_Mechanic.FindAction("Mechanic1", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -1214,6 +1245,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem_Actions.UI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Computer.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Computer.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Mechanic.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Mechanic.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1760,6 +1792,102 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="ComputerActions" /> instance referencing this action map.
     /// </summary>
     public ComputerActions @Computer => new ComputerActions(this);
+
+    // Mechanic
+    private readonly InputActionMap m_Mechanic;
+    private List<IMechanicActions> m_MechanicActionsCallbackInterfaces = new List<IMechanicActions>();
+    private readonly InputAction m_Mechanic_Mechanic1;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Mechanic".
+    /// </summary>
+    public struct MechanicActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public MechanicActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Mechanic/Mechanic1".
+        /// </summary>
+        public InputAction @Mechanic1 => m_Wrapper.m_Mechanic_Mechanic1;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Mechanic; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="MechanicActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(MechanicActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="MechanicActions" />
+        public void AddCallbacks(IMechanicActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MechanicActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MechanicActionsCallbackInterfaces.Add(instance);
+            @Mechanic1.started += instance.OnMechanic1;
+            @Mechanic1.performed += instance.OnMechanic1;
+            @Mechanic1.canceled += instance.OnMechanic1;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="MechanicActions" />
+        private void UnregisterCallbacks(IMechanicActions instance)
+        {
+            @Mechanic1.started -= instance.OnMechanic1;
+            @Mechanic1.performed -= instance.OnMechanic1;
+            @Mechanic1.canceled -= instance.OnMechanic1;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="MechanicActions.UnregisterCallbacks(IMechanicActions)" />.
+        /// </summary>
+        /// <seealso cref="MechanicActions.UnregisterCallbacks(IMechanicActions)" />
+        public void RemoveCallbacks(IMechanicActions instance)
+        {
+            if (m_Wrapper.m_MechanicActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="MechanicActions.AddCallbacks(IMechanicActions)" />
+        /// <seealso cref="MechanicActions.RemoveCallbacks(IMechanicActions)" />
+        /// <seealso cref="MechanicActions.UnregisterCallbacks(IMechanicActions)" />
+        public void SetCallbacks(IMechanicActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MechanicActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MechanicActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="MechanicActions" /> instance referencing this action map.
+    /// </summary>
+    public MechanicActions @Mechanic => new MechanicActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -1988,5 +2116,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnExitCamera(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Mechanic" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="MechanicActions.AddCallbacks(IMechanicActions)" />
+    /// <seealso cref="MechanicActions.RemoveCallbacks(IMechanicActions)" />
+    public interface IMechanicActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Mechanic1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMechanic1(InputAction.CallbackContext context);
     }
 }

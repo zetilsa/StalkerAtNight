@@ -46,4 +46,18 @@ public class EyeViewManager : MonoBehaviour
             });
         });
     }
+
+    public void Blink(bool state)
+    {
+        if(state == true)
+        {
+            view[0].DOLocalMoveY(20, 0.25f);
+            view[1].DOLocalMoveY(-20, 0.25f);
+        }
+        else if(state == false)
+        {
+            view[0].DOLocalMoveY(1080, 0.25f);
+            view[1].DOLocalMoveY(-1080, 0.25f);
+        }
+    }
 }
