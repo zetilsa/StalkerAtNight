@@ -7,9 +7,10 @@ public class GameManager : MonoBehaviour
 
     public FirstPersonController MainFPS;
     public Transform CameraJoint;
-    bool started;
+    public bool started;
     public InputSystem_Actions MainInput;
     PlayableDirector PlayableDirector;
+    [SerializeField] GameObject GameOverUI;
     void OnEnable()
     {
         MainInput = new InputSystem_Actions();
@@ -71,5 +72,10 @@ public class GameManager : MonoBehaviour
 
         print("timelinestopped");
         PlayerManager.instance.Transition = false;
+    }
+
+    public void GameOver()
+    {
+        GameOverUI.SetActive(true);
     }
 }

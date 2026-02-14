@@ -28,7 +28,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] Image BreathBarUIFill;
     bool BreathUIShowed;
 
-
+    [SerializeField] AudioSource AudioSrc;
+    [SerializeField] AudioClip[] PlayerSfx;
     bool Mechanic1;
     void Start()
     {
@@ -41,6 +42,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void Update()
     {
+
         if (enableHoldBreath == true)
         {
             HoldBreath();
@@ -63,6 +65,15 @@ public class PlayerManager : MonoBehaviour
         }
         else if(recoverawareness == false)
         {
+            if(Awareness == 0 && GameManager.instance.started == true)
+            {
+                print("GameOver");
+                GameManager.instance.started = false;
+
+                AudioSrc.clip = PlayerSfx[0];
+                AudioSrc.Play();
+                GameManager.instance.GameOver();
+            }
             Awareness = Mathf.Clamp(Awareness + awarenessmodifierRate.x, 0, 100);
         }
             if (breath != 100 && BreathUIShowed == false)
@@ -102,7 +113,15 @@ public class PlayerManager : MonoBehaviour
             recoverbreath = true;
         }
 
+        if (breath == 0 && GameManager.instance.started == true)
+        {
+            print("GameOver");
+            GameManager.instance.started = false;
 
+            AudioSrc.clip = PlayerSfx[0];
+            AudioSrc.Play();
+            GameManager.instance.GameOver();
+        }
 
     }
     private void OnEnable()
