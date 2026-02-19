@@ -30,7 +30,7 @@ MonoBehaviour:
     m_Value: 0
   focusDistance:
     m_OverrideState: 1
-    m_Value: 3.1144903
+    m_Value: 7.4155335
   aperture:
     m_OverrideState: 1
     m_Value: 2
@@ -255,10 +255,10 @@ MonoBehaviour:
     m_Value: 0.9
   intensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.75
   scatter:
-    m_OverrideState: 0
-    m_Value: 0.7
+    m_OverrideState: 1
+    m_Value: 0.908
   clamp:
     m_OverrideState: 0
     m_Value: 65472
@@ -269,7 +269,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   filter:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   downscale:
     m_OverrideState: 0
@@ -278,12 +278,12 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 6
   dirtTexture:
-    m_OverrideState: 0
-    m_Value: {fileID: 0}
+    m_OverrideState: 1
+    m_Value: {fileID: 2800000, guid: 879d051bae1aad442ae36954045f8c1b, type: 3}
     dimension: 1
   dirtIntensity:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 2
 --- !u!114 &8205986888871244615
 MonoBehaviour:
   m_ObjectHideFlags: 3

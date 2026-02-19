@@ -42,7 +42,7 @@ public class Drawer : MonoBehaviour
 
             Vector3 newPos = transform.localPosition + new Vector3(Mathf.Clamp(movevalue, -Max, Max), 0, 0);
             Vector3 finalnewpos = new Vector3(Mathf.Clamp(newPos.x, Min, Max), Mathf.Clamp(newPos.y, Min, Max), Mathf.Clamp(newPos.z, Min, Max));
-            print(movevalue + " " + newPos);
+
             transform.localPosition = finalnewpos;
             if (Input.GetMouseButtonUp(0))
             {

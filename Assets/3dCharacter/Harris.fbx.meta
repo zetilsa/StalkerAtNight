@@ -1,0 +1,230 @@
+fileFormatVersion: 2
+guid: 0cdeab4769db28c4b8202bab9cc83a6d
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: badan
+    second: {fileID: 2100000, guid: 2d9fe2cbbf7fb584fbbc03407d78a985, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: baju
+    second: {fileID: 2100000, guid: 553eaf59c5f74a44f945a9093d2461e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mata
+    second: {fileID: 2100000, guid: e2dc42232719e5f428e19e3035a87124, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rammbut
+    second: {fileID: 2100000, guid: ff6547c707eb18940b9f414384f24bb5, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _badan_BaseColor
+    second: {fileID: 2800000, guid: b3dfce5dfe3ddd843aaecc6142cf9d78, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _badan_Emissive
+    second: {fileID: 2800000, guid: a4bf74050cc7efe4fbab8f5698b43123, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _badan_Metallic
+    second: {fileID: 2800000, guid: 35d6d89900121d54db8a829b6654e7ab, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _badan_Normal
+    second: {fileID: 2800000, guid: b97dc136307f6fe4d9595c6d705a61ae, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _badan_Roughness
+    second: {fileID: 2800000, guid: 75d0c0b99b709374697c7df539805dd2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _baju_BaseColor
+    second: {fileID: 2800000, guid: 26e883f01328f7e4180b3e3f05f69dfe, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _baju_Emissive
+    second: {fileID: 2800000, guid: dffeb2c1a3154da4588023792b4e69c4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _baju_Metallic
+    second: {fileID: 2800000, guid: 03a38064ee47ab14cb4285e6a1615059, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _baju_Normal
+    second: {fileID: 2800000, guid: 1d51acddee266b44b849401915cd4079, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _baju_Roughness
+    second: {fileID: 2800000, guid: 85cd68b8d16abca449549061f3bdfa3b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _rammbut_BaseColor
+    second: {fileID: 2800000, guid: ce212a953d48419439cc243ec333a5c7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _rammbut_Emissive
+    second: {fileID: 2800000, guid: d550fbe1b4a71f341bffffa6a05ae507, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _rammbut_Metallic
+    second: {fileID: 2800000, guid: fa2abd06cc8aba84aa70cf429e5f786b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _rammbut_Normal
+    second: {fileID: 2800000, guid: ce3a4244dee8eb14cb664478f5ddb45e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char _rammbut_Roughness
+    second: {fileID: 2800000, guid: 5e997aa316f3bbc4bb2f5c8cd28a3df3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char mata _mata_BaseColor
+    second: {fileID: 2800000, guid: 3c39d56cfcaa2424f8a0e3aabe1692b7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char mata _mata_Emissive
+    second: {fileID: 2800000, guid: f03c5b9c34ce0d5439a5877c6d3bb63a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char mata _mata_Metallic
+    second: {fileID: 2800000, guid: b092c3d386d0c9d4a98e4b650bd4403b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char mata _mata_Normal
+    second: {fileID: 2800000, guid: c7064e95cdc597244b16514eb22b8abd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: horor char mata _mata_Roughness
+    second: {fileID: 2800000, guid: 8720559c1abc2cd4ea1d06892e5e8ea1, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

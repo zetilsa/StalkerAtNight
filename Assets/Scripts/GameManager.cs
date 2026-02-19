@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public InputSystem_Actions MainInput;
     PlayableDirector PlayableDirector;
     [SerializeField] GameObject GameOverUI;
+
+    [SerializeField] PlayableDirector StartBedAnimator;
     void OnEnable()
     {
         MainInput = new InputSystem_Actions();
@@ -31,7 +33,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        GameObject.Find("Bed").GetComponent<PlayableDirector>().Play();
+        StartBedAnimator.Play();
         MainFPS.CameraJoint.GetComponent<LockCameraTransform>().enabled = true;
     }
 

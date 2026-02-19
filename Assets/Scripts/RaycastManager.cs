@@ -27,7 +27,7 @@ public class RaycastManager : MonoBehaviour
     PlayerManager PlayerMgr;
 
     //Controller
-    OnComputerControl OCC;
+    [SerializeField] OnComputerControl OCC;
 
     private bool OnComputer;
     private bool onTransition;
@@ -44,14 +44,14 @@ public class RaycastManager : MonoBehaviour
             Instance = this;
         }
 
-        mainCam = GetComponent<Camera>();
+        
         GMinst = GameManager.instance;
         PMgr = PathManager.instance;
         PlayerMgr = PlayerManager.instance;
-
+        mainCam = GMinst.MainFPS.playerCamera;
 
         //Controller
-        OCC = GetComponent<OnComputerControl>();
+
     }
 
     // Update is called once per frame
@@ -145,7 +145,6 @@ public class RaycastManager : MonoBehaviour
                         RaycastTag = tagsyst.tag;
                         foreach (string tag in RaycastTag)
                         {
-                            print("Debug12124asd" + tag);
                             if (tag == "Interactable" && raycastfirsttime == false)
                             {
                                 raycastfirsttime = true;
@@ -159,7 +158,6 @@ public class RaycastManager : MonoBehaviour
                             switch (tag)
                             {
                                 case "Interactable":
-                                    print("Debug12124");
                                     CrosshairManager.instance.SetDetect(true);
                                     break;
                                 default:

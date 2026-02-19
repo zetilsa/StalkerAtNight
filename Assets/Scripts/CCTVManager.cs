@@ -71,7 +71,7 @@ public class CCTVManager : MonoBehaviour
         buttons[currentCam].Camera.SetActive(true);
         buttons[currentCam].Fill.SetActive(true);
 
-        if (target == 4 || target == 5)
+        if (target == 4 || target == 5 || target == 6)
         {
             Button.SetActive(true);
         }

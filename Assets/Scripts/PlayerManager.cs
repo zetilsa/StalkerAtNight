@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance {  get; private set; }
+
+    [SerializeField] Rigidbody rb;
+    [SerializeField] FirstPersonController FPS;
+
     public bool OnBed;
     public bool OnComputer;
     public bool IsHiding;
@@ -37,6 +41,7 @@ public class PlayerManager : MonoBehaviour
         {
             instance = this;
         }
+
         GameManager.instance.MainInput.Player.Interact.performed += Interact;
         GameManager.instance.MainInput.Player.Interact.Enable();
     }
@@ -169,7 +174,7 @@ public class PlayerManager : MonoBehaviour
 
         if (SetVelocityToZero)
         {
-            GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
         }
         if (MainInput == true)
         {
@@ -180,9 +185,9 @@ public class PlayerManager : MonoBehaviour
             GameManager.instance.MainInput.Player.Disable();
         }
         //GetComponent<FirstPersonController>().LocalRotationCamMode = CameraRotationMode;
-        GetComponent<FirstPersonController>().playerCanMove = PlayerCanMove;
-        GetComponent<FirstPersonController>().cameraCanMove = CameraCanMove;
-        GetComponent<FirstPersonController>().enableSprint = EnableSprint;
+        FPS.playerCanMove = PlayerCanMove;
+        FPS.cameraCanMove = CameraCanMove;
+        FPS.enableSprint = EnableSprint;
         RaycastManager.Instance.EnableRaycast = EnableRaycast;
 
 

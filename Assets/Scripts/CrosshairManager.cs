@@ -41,7 +41,6 @@ public class CrosshairManager : MonoBehaviour
         }
         else if (detect == true)
         {
-            print("ting");
             Child.DOFade(1, 0.5f);
         }
     }
