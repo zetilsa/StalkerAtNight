@@ -30,7 +30,7 @@ MonoBehaviour:
     m_Value: 0
   focusDistance:
     m_OverrideState: 1
-    m_Value: 7.4155335
+    m_Value: 2.492693
   aperture:
     m_OverrideState: 1
     m_Value: 2
@@ -71,29 +71,6 @@ MonoBehaviour:
   clamp:
     m_OverrideState: 1
     m_Value: 0.05
---- !u!114 &-2571591700959654244
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5d54ea7b8de39d42ace591822b11cac, type: 3}
-  m_Name: VHSEffectComponent
-  m_EditorClassIdentifier: Assembly-CSharp::VHSEffectComponent
-  active: 0
-  intensity:
-    m_OverrideState: 1
-    m_Value: 1
-  noiseColor:
-    m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
-    hdr: 0
-  scanlinesHeight:
-    m_OverrideState: 1
-    m_Value: 1
 --- !u!114 &-330063437519285104
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -176,7 +153,6 @@ MonoBehaviour:
   - {fileID: 2711055889795760618}
   - {fileID: -6566338030565078471}
   - {fileID: 8205986888871244615}
-  - {fileID: -2571591700959654244}
   - {fileID: -246775669714178399}
   - {fileID: 8935310178656475602}
   - {fileID: 8664982696289537005}

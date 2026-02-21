@@ -49,12 +49,11 @@ public class BreathPostProcessingModifier : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayerManager.instance.enableHoldBreath == true)
-        {
+
             value = PlayerManager.instance.breath;
             Vignette.intensity.value = Mathf.Lerp(VignetteValueRange.x, VignetteValueRange.y, value / 100);
             colorAdjustments.postExposure.value = Mathf.Lerp(ExposureValueRange.x, ExposureValueRange.y, value / 100);
         Chromatic.intensity.value = Mathf.Lerp(ChromaticValueRange.x, ChromaticValueRange.y, value / 100);
-        }
+        
     }
 }
