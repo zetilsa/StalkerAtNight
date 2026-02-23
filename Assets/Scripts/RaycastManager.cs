@@ -281,6 +281,7 @@ public class RaycastManager : MonoBehaviour
                                 {
                                     if (GMinst.MainInput.Player.Interact.triggered && PlayerManager.instance.Transition == false && onTransition == false)
                                     {
+                                        GuideTextManager.instance.SetText(new string[2] { "[LMB] to Get Out", "Hold [RMB] to Hold Breath" });
                                         PlayerMgr.ChangeControlState(true,false,false,false,true,true,false, true,true);
                                         Selected.GetComponent<ClosetManager>().Hide(true);
                                     }

@@ -1,6 +1,5 @@
 using UnityEngine;
 using DG.Tweening;
-using UnityEditor.ShaderGraph.Serialization;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] private Transform[] paths;

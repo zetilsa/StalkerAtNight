@@ -9,8 +9,10 @@ public class CCTVManager : MonoBehaviour
     public CamButton[] buttons;
     public int currentCam { get; private set; }
     [SerializeField] GameObject Button;
+    [SerializeField] AudioSource src;
 
     float currentnoisepower;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -59,36 +61,39 @@ public class CCTVManager : MonoBehaviour
 
     public void ChangeCam(int target)
     {
-        
-        DOVirtual.Float(0.12f, 0, .2f, v =>
+        if (target != currentCam)
         {
-            m_MeshRenderer.material.SetFloat("_NoisePower", v);
-        }).SetEase(Ease.InOutCubic);
-
-        if (buttons[target].isGlitching == false)
-        {
-            if (buttons[currentCam].Camera.GetComponent<Room>().AlwaysOn == false)
-            {
-                buttons[currentCam].Camera.SetActive(false);
-            }
-            buttons[currentCam].Fill.SetActive(false);
-            currentCam = target;
-            
-            DOVirtual.Float(0, 0.12f, .5f, v =>
+            src.Play();
+            DOVirtual.Float(0.12f, 0, .2f, v =>
             {
                 m_MeshRenderer.material.SetFloat("_NoisePower", v);
             }).SetEase(Ease.InOutCubic);
 
-            buttons[currentCam].Camera.SetActive(true);
-            buttons[currentCam].Fill.SetActive(true);
+            if (buttons[target].isGlitching == false)
+            {
+                if (buttons[currentCam].Camera.GetComponent<Room>().AlwaysOn == false)
+                {
+                    buttons[currentCam].Camera.SetActive(false);
+                }
+                buttons[currentCam].Fill.SetActive(false);
+                currentCam = target;
 
-            if (target == 5 || target == 6 || target == 7)
-            {
-                Button.SetActive(true);
-            }
-            else
-            {
-                Button.SetActive(false);
+                DOVirtual.Float(0, 0.12f, .5f, v =>
+                {
+                    m_MeshRenderer.material.SetFloat("_NoisePower", v);
+                }).SetEase(Ease.InOutCubic);
+
+                buttons[currentCam].Camera.SetActive(true);
+                buttons[currentCam].Fill.SetActive(true);
+
+                if (target == 5 || target == 6 || target == 7)
+                {
+                    Button.SetActive(true);
+                }
+                else
+                {
+                    Button.SetActive(false);
+                }
             }
         }
         
