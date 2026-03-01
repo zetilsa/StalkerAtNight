@@ -7,6 +7,7 @@ public class NoiseMonitor : MonoBehaviour
     [SerializeField]Material noisematerial;
     [SerializeField] MeshRenderer meshRenderer;
     [SerializeField] Vector2 VolumeRange;
+    [SerializeField] AudioSource src;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,8 +17,9 @@ public class NoiseMonitor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(noisematerial.GetFloat("_NoisePower"));
+
         value = noisematerial.GetFloat("_NoisePower");
         hasil = Mathf.Lerp(VolumeRange.x,VolumeRange.y,(value * 100) / 12);
+        src.volume = hasil;
     }
 }

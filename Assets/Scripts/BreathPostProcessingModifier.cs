@@ -14,7 +14,7 @@ public class BreathPostProcessingModifier : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Get DOF from the volume profile
+        // Get DOF from the Volume profile
         if (globalVolume.profile.TryGet(out Vignette))
         {
             // Enable override so runtime changes take effect

@@ -12,6 +12,7 @@ public class FadeManager : MonoBehaviour
         instance = this;
         if(AutoFadeOnStart == true)
         {
+            
             cg.DOFade(0, 1);
         }
     }

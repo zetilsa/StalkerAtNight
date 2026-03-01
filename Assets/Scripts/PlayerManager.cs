@@ -45,7 +45,7 @@ public class PlayerManager : MonoBehaviour
         GameManager.instance.MainInput.Player.Interact.performed += Interact;
         GameManager.instance.MainInput.Player.Interact.Enable();
     }
-    private void Update()
+    private void FixedUpdate()
     {
 
         if (enableHoldBreath == true)

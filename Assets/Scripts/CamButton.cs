@@ -32,7 +32,10 @@ public class CamButton : MonoBehaviour
             isGlitching = false;
             if (PlayerManager.instance.OnComputer == true)
             {
-                CCTVManager.instance.ChangeCam(CCTVManager.instance.currentCam); //Refresh
+                if (CCTVManager.instance.currentCam == cameraID)
+                {
+                    CCTVManager.instance.ChangeCam(CCTVManager.instance.currentCam, true); //Refresh
+                }
             }
         }
         StartCoroutine(i());

@@ -39,7 +39,7 @@ public class CCTVManager : MonoBehaviour
     public void OnUse()
     {
         DOTween.Complete(this);
-        DOVirtual.Float(m_MeshRenderer.material.GetFloat("_NoisePower"), 0.12f, .5f, v =>
+        DOVirtual.Float(m_MeshRenderer.material.GetFloat("_NoisePower"), 0.13f, .5f, v =>
         {
             m_MeshRenderer.material.SetFloat("_NoisePower", v);
         }).SetEase(Ease.InOutCubic);
@@ -64,25 +64,23 @@ public class CCTVManager : MonoBehaviour
         if (target != currentCam)
         {
             src.Play();
-            DOVirtual.Float(0.12f, 0, .2f, v =>
+            DOVirtual.Float(0.13f, 0, .2f, v =>
             {
                 m_MeshRenderer.material.SetFloat("_NoisePower", v);
             }).SetEase(Ease.InOutCubic);
-
-            if (buttons[target].isGlitching == false)
-            {
                 if (buttons[currentCam].Camera.GetComponent<Room>().AlwaysOn == false)
                 {
                     buttons[currentCam].Camera.SetActive(false);
                 }
                 buttons[currentCam].Fill.SetActive(false);
                 currentCam = target;
-
-                DOVirtual.Float(0, 0.12f, .5f, v =>
+            if (buttons[target].isGlitching == false)
+            {
+                DOVirtual.Float(0, 0.13f, .5f, v =>
                 {
                     m_MeshRenderer.material.SetFloat("_NoisePower", v);
                 }).SetEase(Ease.InOutCubic);
-
+            }
                 buttons[currentCam].Camera.SetActive(true);
                 buttons[currentCam].Fill.SetActive(true);
 
@@ -94,11 +92,45 @@ public class CCTVManager : MonoBehaviour
                 {
                     Button.SetActive(false);
                 }
-            }
+            
         }
         
     }
+    public void ChangeCam(int target,bool refresh)
+    {
+        if (refresh == true)
+        {
+            DOVirtual.Float(0.13f, 0, .2f, v =>
+            {
+                m_MeshRenderer.material.SetFloat("_NoisePower", v);
+            }).SetEase(Ease.InOutCubic);
+            if (buttons[currentCam].Camera.GetComponent<Room>().AlwaysOn == false)
+            {
+                buttons[currentCam].Camera.SetActive(false);
+            }
+            buttons[currentCam].Fill.SetActive(false);
+            currentCam = target;
 
+            DOVirtual.Float(0, 0.13f, .5f, v =>
+            {
+                m_MeshRenderer.material.SetFloat("_NoisePower", v);
+            }).SetEase(Ease.InOutCubic);
+
+            buttons[currentCam].Camera.SetActive(true);
+            buttons[currentCam].Fill.SetActive(true);
+
+            if (target == 5 || target == 6 || target == 7)
+            {
+                Button.SetActive(true);
+            }
+            else
+            {
+                Button.SetActive(false);
+            }
+        }
+        }
+
+    
     public void Glitch()
     {
         DOVirtual.Float(m_MeshRenderer.material.GetFloat("_NoisePower"), 0, .2f, v =>

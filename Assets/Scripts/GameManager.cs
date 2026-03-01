@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
@@ -11,7 +12,8 @@ public class GameManager : MonoBehaviour
     public InputSystem_Actions MainInput;
     PlayableDirector PlayableDirector;
     [SerializeField] GameObject GameOverUI;
-
+    [SerializeField] AudioMixer mixer;
+    [SerializeField] float GameVolume;
     [SerializeField] PlayableDirector StartBedAnimator;
     void OnEnable()
     {
@@ -37,7 +39,10 @@ public class GameManager : MonoBehaviour
         MainFPS.CameraJoint.GetComponent<LockCameraTransform>().enabled = true;
     }
 
-
+    private void FixedUpdate()
+    {
+        mixer.SetFloat("GameVolume", GameVolume);
+    }
     public void StartGame()
     {
         

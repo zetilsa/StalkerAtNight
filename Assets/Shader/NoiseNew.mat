@@ -49,11 +49,11 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ScanlineScrollSpeed: 0.1
-    - _Size: 25
+    - _Size: 10
     - _scanlinescrollspeed: 0.1
     m_Colors:
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
-    - _Emission2: {r: 36.329647, g: 36.329647, b: 36.329647, a: 1}
+    - _Emission2: {r: 22.363525, g: 22.363525, b: 22.363525, a: 1}
     - _NoiseColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0}
     - _NoiseSize: {r: 1, g: 1.83, b: 0, a: 0}
     - _Speed: {r: 8, g: -20, b: 0, a: 0}

@@ -56,13 +56,14 @@ public class AIEnemy : MonoBehaviour
                         AIManager.instance.SetGlitchOnCameras(NextRoom);
 
                     }
-                    yield return new WaitForSeconds(AIManager.instance.GlitchTime);
+                    yield return new WaitForSeconds(AIManager.instance.GlitchTime / 2);
                     AIManager.instance.Rooms[currentposition].EnemiesinRoom.Enemies[EnemyID].DisableEnemyInThisRoom();
                 }
                 print("Moved : Harris from" + currentposition + " to " + NextRoom);
                 currentposition = NextRoom;
                 if (currentposition != 8)
                 {
+                    yield return new WaitForSeconds(AIManager.instance.GlitchTime / 2);
                     AIManager.instance.Rooms[currentposition].EnemiesinRoom.Enemies[EnemyID].ShowEnemyInThisRoom();
                 }
                 else
