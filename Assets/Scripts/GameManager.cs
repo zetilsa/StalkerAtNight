@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float GameVolume;
     [SerializeField] PlayableDirector StartBedAnimator;
     [SerializeField] GameObject PostDeathUI;
+    [SerializeField] GameObject WinUI;
     public CinemachineBrain Camera;
     void OnEnable()
     {
@@ -63,6 +65,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Win()
+    {
+        WinUI.SetActive(true);
+        //DOVirtual.Float(0, -80, 1, v =>
+        //{
+        //    GameVolume = v;
+        //}).SetEase(Ease.InCubic);
+        
+        AIManager.instance.StopTick();
+    }
     public void DoneTransition()
     {
         PlayerManager.instance.Transition = false;

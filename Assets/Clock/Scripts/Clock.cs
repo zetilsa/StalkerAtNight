@@ -26,6 +26,7 @@ public class Clock : MonoBehaviour {
     [SerializeField]GameObject pointerSeconds;
     [SerializeField]GameObject pointerMinutes;
     [SerializeField]GameObject pointerHours;
+    bool gamestarting = true;
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------------------
@@ -62,7 +63,11 @@ void FixedUpdate()
             }
         }
     }
-
+    if(hour == 6 && gamestarting == true)
+        {
+            gamestarting = false;
+            GameManager.instance.Win();
+        }
 
     //-- calculate pointer angles
     float rotationSeconds = (360.0f / 60.0f)  * seconds;
