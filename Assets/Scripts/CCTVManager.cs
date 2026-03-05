@@ -1,4 +1,5 @@
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class CCTVManager : MonoBehaviour
@@ -10,7 +11,7 @@ public class CCTVManager : MonoBehaviour
     public int currentCam { get; private set; }
     [SerializeField] GameObject Button;
     [SerializeField] AudioSource src;
-
+    [SerializeField] TextMeshProUGUI label;
     float currentnoisepower;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,6 +28,7 @@ public class CCTVManager : MonoBehaviour
     void Initialize()
     {
         buttons[currentCam].Camera.SetActive(true);
+        label.text = buttons[currentCam].Camera.GetComponent<Room>().RoomName;
     }
 
     void CleanUp()
@@ -74,6 +76,7 @@ public class CCTVManager : MonoBehaviour
                 }
                 buttons[currentCam].Fill.SetActive(false);
                 currentCam = target;
+                label.text = buttons[currentCam].Camera.GetComponent<Room>().RoomName;
             if (buttons[target].isGlitching == false)
             {
                 DOVirtual.Float(0, 0.13f, .5f, v =>

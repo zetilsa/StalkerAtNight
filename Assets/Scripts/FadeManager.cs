@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using System;
 public class FadeManager : MonoBehaviour
 {
     public static FadeManager instance {  get; private set; }
@@ -13,10 +14,11 @@ public class FadeManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        SceneManager.sceneLoaded += SLoaded;
 
     }
-    private void OnLevelWasLoaded(int level)
-    {
+    private void SLoaded(Scene scene, LoadSceneMode mode)
+        {
         Mixer.SetFloat("GameVolume", -80);
         if (AutoFadeOnStart == true)
         {
@@ -29,6 +31,7 @@ public class FadeManager : MonoBehaviour
                 });
                 
             }
+            StartCoroutine(i());
             
         }
     }

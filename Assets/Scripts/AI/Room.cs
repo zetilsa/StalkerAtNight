@@ -7,6 +7,7 @@ public class Room : MonoBehaviour
     public bool AlwaysOn;
     public bool isTheLastRoom;
     public RoomEnemy EnemiesinRoom;
+    public string RoomName;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
