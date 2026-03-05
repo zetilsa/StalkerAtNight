@@ -21,12 +21,13 @@ public class JumpscareChecker : MonoBehaviour
         instance = this;
         FPS = GameManager.instance.MainFPS.transform;
         CAM = GameManager.instance.CameraJoint.transform;
+        StartCoroutine(Check());
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Check();
+        
         if (JumpscareEnabled == true)
         {
             if(JumpscareSet == true)
@@ -51,7 +52,7 @@ public class JumpscareChecker : MonoBehaviour
                 for (int i = 0; i < current.Angle.Length; i++)
                 {
                     print("Kalkulasi ke-" + i);
-                    if (FPS.eulerAngles.y > current.Angle[i].x && FPS.rotation.y < current.Angle[i].y)
+                    if (FPSY > current.Angle[i].x && FPSY < current.Angle[i].y)
                     {
                         loop = true;
                         print("Kalkulasi jumpscare benar ke-" + i);
@@ -78,7 +79,7 @@ public class JumpscareChecker : MonoBehaviour
     }
     public void Jumpscare()
     {
-        GameManager.instance.MainFPS.playerCamera.GetComponent<CinemachineBrain>().DefaultBlend.Time = .5f;
+        GameManager.instance.SetCameraBlendValue(.5f);
         Check();
         check = false;
         

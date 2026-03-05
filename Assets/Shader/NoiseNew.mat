@@ -53,10 +53,10 @@ Material:
     - _scanlinescrollspeed: 0.1
     m_Colors:
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
-    - _Emission2: {r: 22.363525, g: 22.363525, b: 22.363525, a: 1}
+    - _Emission2: {r: 27.532713, g: 27.532713, b: 27.532713, a: 1}
     - _NoiseColor: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0}
     - _NoiseSize: {r: 1, g: 1.83, b: 0, a: 0}
-    - _Speed: {r: 8, g: -20, b: 0, a: 0}
+    - _Speed: {r: 16, g: -40, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3225326881537633916

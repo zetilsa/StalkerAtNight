@@ -182,6 +182,7 @@ public class RaycastManager : MonoBehaviour
                             case "Bed":
                                 if (GMinst.MainInput.Player.Interact.triggered)
                                 {
+                                    GMinst.SetCameraBlendValue(0);
                                     StartCoroutine(EnterBed());
                                 }
                                 break;

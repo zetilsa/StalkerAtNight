@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d318567f3f0f2a4eb028ac5b25f175c, type: 3}
+  m_Name: Night6
+  m_EditorClassIdentifier: Assembly-CSharp::NightPreset
+  Night: 6
+  EnableHarris: 1
+  EnableMichael: 1
+  EnableJessie: 1
+  EnableCyntia: 1
+  HarrisDifficulty: 8
+  MichaelDifficulty: 7
+  JessieDifficulty: 9
+  CyntiaDifficulty: 8

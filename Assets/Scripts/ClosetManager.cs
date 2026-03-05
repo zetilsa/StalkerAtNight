@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Playables;
 using DG.Tweening;
+using Unity.Cinemachine;
 public class ClosetManager : MonoBehaviour
 {
     public static ClosetManager instance { get; private set; }
@@ -10,6 +11,7 @@ public class ClosetManager : MonoBehaviour
     [SerializeField] ClosetProperties CP;
     Transform ClosetInitPoint;
     [SerializeField] Transform CamPoint;
+    [SerializeField] CinemachineCamera CameraPoint;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -48,16 +50,11 @@ public class ClosetManager : MonoBehaviour
             PD.playableAsset = MTA.timelineAssets[1];
             ClosetInitPoint = CP.CameraPoint[1];
         }
-        
-        GameManager.instance.MainFPS.CameraJoint.DOMove(ClosetInitPoint.position, .5f).OnComplete(() =>
-        {
-            PD.Play();
-            PD.Evaluate();
-            GameManager.instance.MainFPS.CameraJoint.GetComponent<LockCameraTransform>().Target = CamPoint;
-            GameManager.instance.MainFPS.CameraJoint.GetComponent<LockCameraTransform>().enabled = true;
-            
-        });
-        GameManager.instance.MainFPS.CameraJoint.DORotateQuaternion(ClosetInitPoint.rotation, .5f);
+        GameManager.instance.SetCameraBlendValue(0.5f);
+        PD.Play();
+        PD.Evaluate();
+        CameraPoint.enabled = true;
+
 
     }
     // Update is called once per frame

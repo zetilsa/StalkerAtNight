@@ -36,20 +36,22 @@ public class Drawer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(interacted == true)
+        if (interacted)
         {
-            movevalue = Mathf.Clamp(Input.GetAxis("Mouse X") * .1f,-0.1f, 0.1f);
+            Vector3 worldMoveDir = transform.right;
+            Vector3 screenPoint1 = Camera.main.WorldToScreenPoint(transform.position);
+            Vector3 screenPoint2 = Camera.main.WorldToScreenPoint(transform.position + worldMoveDir);
+            Vector2 screenMoveDir = (Vector2)(screenPoint2 - screenPoint1).normalized;
+            Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            float finalInput = Vector2.Dot(mouseInput, screenMoveDir) * 0.1f;
+            float newX = Mathf.Clamp(transform.localPosition.x + finalInput, Min, Max);
+            transform.localPosition = new Vector3(newX, transform.localPosition.y, transform.localPosition.z);
 
-            Vector3 newPos = transform.localPosition + new Vector3(Mathf.Clamp(movevalue, -Max, Max), 0, 0);
-            Vector3 finalnewpos = new Vector3(Mathf.Clamp(newPos.x, Min, Max), Mathf.Clamp(newPos.y, Min, Max), Mathf.Clamp(newPos.z, Min, Max));
-
-            transform.localPosition = finalnewpos;
             if (Input.GetMouseButtonUp(0))
             {
                 Interact(false);
                 GameManager.instance.MainFPS.cameraCanMove = true;
             }
         }
-
     }
 }

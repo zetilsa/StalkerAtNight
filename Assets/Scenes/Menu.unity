@@ -25573,9 +25573,9 @@ GameObject:
   - component: {fileID: 1454808033}
   - component: {fileID: 1454808032}
   - component: {fileID: 1454808031}
-  - component: {fileID: 1454808037}
-  - component: {fileID: 1454808036}
   - component: {fileID: 1454808038}
+  - component: {fileID: 1454808039}
+  - component: {fileID: 1454808040}
   m_Layer: 0
   m_Name: Camera (1)
   m_TagString: Untagged
@@ -25733,37 +25733,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1454808036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454808030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870b9a8f0f82f4f56800cc427bcd1025, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Kino.AnalogGlitch
-  _scanLineJitter: 0.591
-  _verticalJump: 0
-  _horizontalShake: 0
-  _colorDrift: 0
-  _shader: {fileID: 4800000, guid: da33272284ea24f208f36998880990be, type: 3}
---- !u!114 &1454808037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454808030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a3a070408aa941ab83ae10be1708848, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Kino.DigitalGlitch
-  _intensity: 0.766
-  _shader: {fileID: 4800000, guid: ba40dc630e1d9417cb9ea22586ece1e1, type: 3}
 --- !u!82 &1454808038
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25861,6 +25830,46 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1454808039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454808030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897555bfb049f43c0a341b72b6883d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: KinoGlitch.Runtime::KinoGlitch.AnalogGlitchController
+  <ScanLineJitter>k__BackingField: 0.005
+  <VerticalJump>k__BackingField: 0.015
+  <HorizontalShake>k__BackingField: 0.007
+  <ColorDrift>k__BackingField: 0.025
+  <HorizontalRipple>k__BackingField: 0.05
+  _shader: {fileID: 4800000, guid: 754922b6576fa498bbb2fbbebfe256ef, type: 3}
+--- !u!95 &1454808040
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454808030}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 53cf7b36c92ac44469adb9bc2205312c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1455296822
 GameObject:
   m_ObjectHideFlags: 0
@@ -33735,7 +33744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2031116998
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33769,6 +33778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   AutoFadeOnStart: 1
   cg: {fileID: 2031117000}
+  Mixer: {fileID: 0}
 --- !u!225 &2031117000
 CanvasGroup:
   m_ObjectHideFlags: 0

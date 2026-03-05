@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Playables;
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioMixer mixer;
     [SerializeField] float GameVolume;
     [SerializeField] PlayableDirector StartBedAnimator;
+    [SerializeField] GameObject PostDeathUI;
+    public CinemachineBrain Camera;
     void OnEnable()
     {
         MainInput = new InputSystem_Actions();
@@ -24,6 +27,10 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
 
+    }
+    public void SetCameraBlendValue(float Value)
+    {
+        Camera.DefaultBlend.Time = Value;
     }
     private void OnDisable()
     {
@@ -36,7 +43,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartBedAnimator.Play();
-        MainFPS.CameraJoint.GetComponent<LockCameraTransform>().enabled = true;
+
     }
 
     private void FixedUpdate()
@@ -84,5 +91,12 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         GameOverUI.SetActive(true);
+    }
+
+    public void PostJumpscare()
+    {
+        GameVolume = -80;
+        PostDeathUI.SetActive(true);
+
     }
 }

@@ -9,8 +9,7 @@ public class MenuManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Mixer.SetFloat("GameVolume", -80);
-        Mixer.DOSetFloat("GameVolume", 0, 2).SetEase(Ease.OutCubic);
+
     }
 
     // Update is called once per frame

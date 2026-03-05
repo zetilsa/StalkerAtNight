@@ -7,6 +7,7 @@ public class DepthOfFieldDynamic : MonoBehaviour
     [SerializeField] Volume globalVolume;
     private DepthOfField dof;
     [SerializeField] float currentValue;
+    [SerializeField] bool Toggledynamic;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,7 +26,11 @@ public class DepthOfFieldDynamic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentValue = Mathf.Lerp(currentValue, RM.currentRaycastDistance, Time.deltaTime * 2);
-        dof.focusDistance.value = currentValue;
+        if (Toggledynamic == true)
+        {
+            currentValue = Mathf.Lerp(currentValue, RM.currentRaycastDistance, Time.deltaTime * 2);
+        }
+            dof.focusDistance.value = currentValue;
+        
     }
 }

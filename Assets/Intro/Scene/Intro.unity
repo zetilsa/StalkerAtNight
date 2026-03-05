@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 961739751}
   - component: {fileID: 961739750}
   - component: {fileID: 961739754}
+  - component: {fileID: 961739755}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -601,6 +602,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &961739755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961739749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897555bfb049f43c0a341b72b6883d00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: KinoGlitch.Runtime::KinoGlitch.AnalogGlitchController
+  <ScanLineJitter>k__BackingField: 0.3
+  <VerticalJump>k__BackingField: 0
+  <HorizontalShake>k__BackingField: 0.025
+  <ColorDrift>k__BackingField: 0.1
+  <HorizontalRipple>k__BackingField: 0.2
+  _shader: {fileID: 4800000, guid: 754922b6576fa498bbb2fbbebfe256ef, type: 3}
 --- !u!1 &1806201957
 GameObject:
   m_ObjectHideFlags: 0

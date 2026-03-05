@@ -3,40 +3,43 @@ using UnityEngine;
 public class FreelookCam : MonoBehaviour
 {
     public float sensitivity = 2f;
-    public Vector2 YawRange;
-    public Vector2 PitchRange;
+    public Vector2 YawRange = new Vector2(-180, 180); // Contoh default range
+    public Vector2 PitchRange = new Vector2(-80, 80);
 
     private float rotationX;
     private float rotationY;
 
+    void Start()
+    {
+        // 1. Ambil rotasi awal dari transform yang sudah diatur di Inspector
+        Vector3 currentRotation = transform.localEulerAngles;
+
+        // 2. Masukkan ke variabel akumulasi agar sinkron
+        // Catatan: Unity menyimpan sudut 0-360. 
+        // Untuk Pitch, kita perlu mengubahnya menjadi rentang negatif jika > 180
+        rotationX = (currentRotation.x > 180) ? currentRotation.x - 360 : currentRotation.x;
+        rotationY = (currentRotation.y > 180) ? currentRotation.y - 360 : currentRotation.y;
+    }
+
     void OnEnable()
     {
-        // Mengunci kursor di tengah layar agar tidak mengganggu saat rotasi
-
+        // Tips: Mengunci kursor bisa ditaruh di sini jika diinginkan
+        // Cursor.lockState = CursorLockMode.Confined;
     }
 
     void Update()
     {
-        //if (Input.GetMouseButtonDown(1))
-        //{
-        //    rotationX = transform.localRotation.x;
-        //    rotationY = transform.localRotation.y;
-        //}
-
         if (Input.GetMouseButton(1))
         {
-            // 1. Ambil input dari Mouse menggunakan Input.GetAxis
             float mouseX = Input.GetAxis("Mouse X") * sensitivity;
             float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
 
-            // 2. Akumulasi rotasi
-            rotationY += mouseX; // Horizontal (Yaw)
-            rotationX -= mouseY; // Vertikal (Pitch) - dikurangi agar gerakan mouse ke atas membuat kamera mendongak
+            rotationY += mouseX;
+            rotationX -= mouseY;
 
-            // 3. Batasi rotasi vertikal menggunakan Mathf.Clamp agar tidak jungkir balik
             rotationX = Mathf.Clamp(rotationX, PitchRange.x, PitchRange.y);
             rotationY = Mathf.Clamp(rotationY, YawRange.x, YawRange.y);
-            // 4. Terapkan ke transform.localRotation menggunakan Quaternion.Euler
+
             transform.localRotation = Quaternion.Euler(rotationX, rotationY, 0f);
         }
     }

@@ -13,7 +13,10 @@ public class JumpscarePrefab : MonoBehaviour
     {
         
     }
-
+    public void PostAnim()
+    {
+        GameManager.instance.PostJumpscare();
+    }
     public void CleanUp()
     {
         GameManager.instance.MainFPS.gameObject.SetActive(false);
