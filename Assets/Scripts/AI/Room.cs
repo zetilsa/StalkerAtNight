@@ -19,4 +19,8 @@ public class Room : MonoBehaviour
     {
         
     }
+    public void SetAlwaysOn(bool value)
+    {
+        AlwaysOn = value;
+    }
 }

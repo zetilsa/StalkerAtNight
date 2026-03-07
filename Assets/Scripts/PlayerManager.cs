@@ -45,9 +45,8 @@ public class PlayerManager : MonoBehaviour
         GameManager.instance.MainInput.Player.Interact.performed += Interact;
         GameManager.instance.MainInput.Player.Interact.Enable();
     }
-    private void FixedUpdate()
+    private void Update()
     {
-
         if (enableHoldBreath == true)
         {
             HoldBreath();
@@ -56,6 +55,9 @@ public class PlayerManager : MonoBehaviour
         {
             recoverbreath = true;
         }
+    }
+    private void FixedUpdate()
+    {
         if (Awareness == 100 && AwarenessBarUI.alpha == 1)
         {
             AwarenessBarUI.DOFade(0, 1);

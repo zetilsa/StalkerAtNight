@@ -107,6 +107,7 @@ public class GameManager : MonoBehaviour
 
     public void PostJumpscare()
     {
+        MainFPS.gameObject.SetActive(false);
         GameVolume = -80;
         PostDeathUI.SetActive(true);
 
