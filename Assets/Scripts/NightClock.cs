@@ -3,6 +3,7 @@ using TMPro;
 
 public class NightClock : MonoBehaviour
 {
+    public static NightClock instance { get; private set; }
     public TextMeshProUGUI clockText;
     public int currentHour = 12;
     public int nightNumber = 1;
@@ -25,7 +26,10 @@ public class NightClock : MonoBehaviour
             AdvanceHour();
         }
     }
-
+    public void Sync(int hour)
+    {
+        currentHour = hour;
+    }
     void AdvanceHour()
     {
         // After 12 AM → 1 AM → ... → 6 AM

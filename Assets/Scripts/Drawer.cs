@@ -7,6 +7,7 @@ public class Drawer : MonoBehaviour
     [SerializeField] float Min;
     [SerializeField] float Max;
     [SerializeField] float time;
+    bool transition;
     bool state;
     float movevalue;
     bool interacted;
@@ -32,6 +33,30 @@ public class Drawer : MonoBehaviour
     {
         interacted = value;
 
+    }
+    public void InteractV2()
+    {
+        if (transition == false)
+        {
+            transition = true;
+            if (state == false)
+            {
+                transform.DOLocalMoveX(Max, .3f).OnComplete(() =>
+                {
+                    state = true;
+                    transition = false;
+                }).SetEase(Ease.InOutCubic);
+            }
+            else
+            if (state == true)
+            {
+                transform.DOLocalMoveX(Min, .3f).OnComplete(() =>
+                {
+                    state = false;
+                    transition = false;
+                }).SetEase(Ease.InOutCubic);
+            }
+        }
     }
     // Update is called once per frame
     void Update()

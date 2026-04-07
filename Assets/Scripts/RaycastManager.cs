@@ -199,6 +199,7 @@ public class RaycastManager : MonoBehaviour
                                     PlayerMgr.ChangeControlState(true,true,true,true,true,false, false, true,false);
                                 }
                                     break;
+                             
                             case "Drawer":
                                 if (Input.GetMouseButton(0))
                                 {
@@ -210,6 +211,12 @@ public class RaycastManager : MonoBehaviour
                                 {
                                     print("debugdrawer");
                                     GMinst.MainFPS.cameraCanMove = true;
+                                }
+                                break;
+                            case "DrawerV2":
+                                if (Input.GetMouseButtonDown(0))
+                                {
+                                    Selected.GetComponent<Drawer>().InteractV2();
                                 }
                                 break;
                             case "LightSwitch":

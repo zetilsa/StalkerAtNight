@@ -1,9 +1,10 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
-using System;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 public class FadeManager : MonoBehaviour
 {
     public static FadeManager instance {  get; private set; }
@@ -19,7 +20,8 @@ public class FadeManager : MonoBehaviour
     }
     private void SLoaded(Scene scene, LoadSceneMode mode)
         {
-        Mixer.SetFloat("GameVolume", -80);
+        GameSystem.instance.SetVolume(0);
+        
         if (AutoFadeOnStart == true)
         {
             IEnumerator i()
@@ -27,7 +29,7 @@ public class FadeManager : MonoBehaviour
                 yield return new WaitForSeconds(2);
                 cg.DOFade(0, 2).OnComplete(() =>
                 {
-                    Mixer.DOSetFloat("GameVolume", 0, 2).SetEase(Ease.OutCubic);
+                    GameSystem.instance.SetVolume(1, 1);
                 });
                 
             }
@@ -36,6 +38,20 @@ public class FadeManager : MonoBehaviour
         }
     }
 
+    public void FadeStart()
+    {
+        GameSystem.instance.SetVolume(0);
+            IEnumerator i()
+            {
+                yield return new WaitForSeconds(2);
+                cg.DOFade(0, 2).OnComplete(() =>
+                {
+                    GameSystem.instance.SetVolume(1, 1);
+                });
+
+            }
+            StartCoroutine(i());
+    }
     public void Fade(bool state)
     {
         if (state == false)

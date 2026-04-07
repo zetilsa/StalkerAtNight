@@ -74,7 +74,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -151,6 +151,8 @@ GameObject:
   - component: {fileID: -3313613006272602422}
   - component: {fileID: 5423024536533205642}
   - component: {fileID: 22828683592765611}
+  - component: {fileID: 6273357148361942495}
+  - component: {fileID: 9001197406213204509}
   m_Layer: 0
   m_Name: Harris_Jumpscare_Closet
   m_TagString: Untagged
@@ -207,6 +209,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -5333648752506584759, guid: c80b66f4136f52349a2c4233b700a700, type: 2}
     value: {fileID: 5423024536533205642}
+  - key: {fileID: -6463426173092061194, guid: c80b66f4136f52349a2c4233b700a700, type: 2}
+    value: {fileID: 9001197406213204509}
   m_ExposedReferences:
     m_References: []
 --- !u!82 &1663860412783972442
@@ -376,6 +380,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a74703323fa46a54e8feb25f744ac2ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &6273357148361942495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787792211988760497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a287093fb7b3214e876f84a77150265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  ScanlineJitter: 0
+  VerticalJump: 0
+  HorizontalShake: 0
+  ColorDrift: 0
+  HorizontalRipple: 0
+  DigitalGlitchValue: 0
+--- !u!95 &9001197406213204509
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787792211988760497}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1386166573065748206
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +494,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

@@ -3,6 +3,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -111,5 +112,13 @@ public class GameManager : MonoBehaviour
         GameVolume = -80;
         PostDeathUI.SetActive(true);
 
+    }
+    public void GoRetry()
+    {
+        SceneManager.LoadScene(3);
+    }
+    public void GoMainMenu()
+    {
+        SceneManager.LoadScene(2);
     }
 }

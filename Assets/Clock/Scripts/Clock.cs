@@ -58,6 +58,7 @@ void FixedUpdate()
             {
                 minutes = 0;
                 hour++;
+                    NightClock.instance.Sync(hour);
                 if(hour >= 24)
                     hour = 0;
             }

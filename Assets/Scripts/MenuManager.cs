@@ -9,7 +9,8 @@ public class MenuManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class MenuManager : MonoBehaviour
     {
         IEnumerator w()
         {
-            Mixer.DOSetFloat("GameVolume", -80, 1).SetEase(Ease.InCubic);
+            GameSystem.instance.SetVolume(0, 1);
             FadeManager.instance.Fade(true);
             yield return new WaitForSeconds(1);
             SceneManager.LoadScene(SceneID);

@@ -79,6 +79,7 @@ public class JumpscareChecker : MonoBehaviour
     }
     public void Jumpscare()
     {
+        InGamePauseSystem.instance.EnablePausing = false;
         GameManager.instance.SetCameraBlendValue(.5f);
         Check();
         check = false;
