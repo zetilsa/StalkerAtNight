@@ -426,6 +426,8 @@ PlayableDirector:
     value: {fileID: 854662462}
   - key: {fileID: 5726421593227641706, guid: f5a2f42e107526c46b8699a11c02dfa9, type: 2}
     value: {fileID: 368531583}
+  - key: {fileID: -1094048878085951182, guid: f5a2f42e107526c46b8699a11c02dfa9, type: 2}
+    value: {fileID: 586565725}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &11901390
@@ -60946,6 +60948,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3802871004510032739, guid: 497fbd9d3039c7143ba80e54ad753918, type: 3}
   m_PrefabInstance: {fileID: 478431622}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &586565721 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7206787715501906655, guid: 4625b076a4947fa4399935099cfef3c9, type: 3}
+  m_PrefabInstance: {fileID: 2140312171}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &586565725
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 586565721}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &588166202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8920317708944300660, guid: 497fbd9d3039c7143ba80e54ad753918, type: 3}
@@ -94857,7 +94886,7 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -94899,7 +94928,7 @@ Light:
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 2.5
+  m_BounceIntensity: 2
   m_ColorTemperature: 5710
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 6.2e-44, z: 2.7187517e-20, w: 3.306183e-39}
@@ -260218,6 +260247,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1591501425106163492, guid: 4625b076a4947fa4399935099cfef3c9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1521425452}
+    - targetCorrespondingSourceObject: {fileID: 7206787715501906655, guid: 4625b076a4947fa4399935099cfef3c9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 586565725}
   m_SourcePrefab: {fileID: 100100000, guid: 4625b076a4947fa4399935099cfef3c9, type: 3}
 --- !u!4 &2142451743 stripped
 Transform:
