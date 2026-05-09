@@ -115,10 +115,10 @@ public class GameManager : MonoBehaviour
     }
     public void GoRetry()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
     }
     public void GoMainMenu()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 }

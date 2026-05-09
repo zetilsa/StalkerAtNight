@@ -27,9 +27,10 @@ public class FadeManager : MonoBehaviour
             IEnumerator i()
             {
                 yield return new WaitForSeconds(2);
+                GameSystem.instance.SetVolume(1, 2);
                 cg.DOFade(0, 2).OnComplete(() =>
                 {
-                    GameSystem.instance.SetVolume(1, 1);
+                    
                 });
                 
             }

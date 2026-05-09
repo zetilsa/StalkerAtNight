@@ -13,10 +13,11 @@ public class NightClock : MonoBehaviour
 
     void Start()
     {
+        instance = this;
         UpdateClockDisplay();
     }
 
-    void Update()
+    /*void Update()
     {
         timer += Time.deltaTime;
 
@@ -26,6 +27,7 @@ public class NightClock : MonoBehaviour
             AdvanceHour();
         }
     }
+    */
     public void Sync(int hour)
     {
         currentHour = hour;
