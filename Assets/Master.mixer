@@ -283,6 +283,10 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 307e5b14b51b6a34f99ca12be02c3236
     name: GameVolume
+  - guid: af97337329bf2324aac98fd0d70dd345
+    name: Music
+  - guid: d39916725948ee4499a1b0844bb9bb45
+    name: SFX
   m_AudioMixerGroupViews:
   - guids:
     - b04931bf0d829ca4f8c2a935c30bcb29

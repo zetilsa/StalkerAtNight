@@ -60,6 +60,7 @@ public class AIEnemy : MonoBehaviour
                     AIManager.instance.Rooms[currentposition].EnemiesinRoom.Enemies[EnemyID].DisableEnemyInThisRoom();
                 }
                 print("Moved : Harris from" + currentposition + " to " + NextRoom);
+                int lastposition = currentposition;
                 currentposition = NextRoom;
                 if (currentposition != 8)
                 {
@@ -73,7 +74,14 @@ public class AIEnemy : MonoBehaviour
                     {
                         print("enemy entered ROom, jumpscaring");
                         yield return new WaitForSeconds(2);
-                        AIManager.instance.DoEntrance(EnemyID);
+                        if (lastposition == 4) //artinya dia dari hallway
+                        {
+                            AIManager.instance.DoEntrance(0,EnemyID); //value 0 artinya source dari DoorV3
+                        }
+                        else if (lastposition == 6) //artinya dia dari vent
+                        {
+                            AIManager.instance.DoEntrance(1, EnemyID); //value 1 artinya source dari Vent
+                        }
                     }
                     StartCoroutine(i());
                 }

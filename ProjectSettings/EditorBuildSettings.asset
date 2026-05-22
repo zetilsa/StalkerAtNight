@@ -18,8 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuRigy.unity
     guid: 382b23d98b516b74899fdd2bbc107591
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/Game.unity
+    guid: a56aa2560cc6de8488b60368d1bfbbdf
   - enabled: 0
     path: Assets/Scenes/GameRigy.unity
     guid: e598b705066c51d40bd33fc4eb7c8d03

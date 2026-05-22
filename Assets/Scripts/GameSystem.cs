@@ -10,7 +10,7 @@ public class GameSystem : MonoBehaviour
     [SerializeField] NightPreset[] Nights;
     public NightPreset Night;
     public int SelectedNight;
-    [SerializeField] AudioMixer Mixer;
+    public AudioMixer Mixer;
 
     [SerializeField] int GameSceneBuildIndex;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -66,7 +66,16 @@ public class GameSystem : MonoBehaviour
 
         Mixer.SetFloat("GameVolume", dB);
     }
+    public void SetVolume(string parameterName ,float linearValue)
+    {
+        // Clamp nilai agar berada di rentang 0.0001 - 1
+        float volume = Mathf.Clamp(linearValue, 0.0001f, 1f);
 
+        // Konversi ke Decibel
+        float dB = Mathf.Log10(volume) * 20;
+
+        Mixer.SetFloat(parameterName, dB);
+    }
     public void SetVolume(float linearValue,float time)
     {
         // Clamp nilai agar berada di rentang 0.0001 - 1

@@ -12,7 +12,7 @@ public class AIManager : MonoBehaviour
     [SerializeField] Vector2 GlitchTimeRange;
     public float GlitchTime;
     public Room[] Rooms;
-    [SerializeField] PlayableDirector EntranceAnim;
+    [SerializeField] PlayableDirector[] EntranceAnim;
     [SerializeField] TimelineAsset[] EntranceSet;
 
 
@@ -32,10 +32,17 @@ public class AIManager : MonoBehaviour
     {
 
     }
-    public void DoEntrance(int ID)
+    public void DoEntrance(int source,int ID) //ini kode sementara CHANGE THIS IMMEDIATELY
     {
-        EntranceAnim.playableAsset = EntranceSet[ID];
-        EntranceAnim.Play();
+        if (source == 0)
+        {
+            EntranceAnim[source].playableAsset = EntranceSet[ID];
+            EntranceAnim[source].Play();
+        }
+        else if (source == 1)
+        {
+            EntranceAnim[source].Play();
+        }
 
     }
     public void DoneEntranceAnim()

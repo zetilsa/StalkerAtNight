@@ -58,14 +58,14 @@ public class PlayerManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (Awareness == 100 && AwarenessBarUI.alpha == 1)
+        /*if (Awareness == 100 && AwarenessBarUI.alpha == 1)
         {
             AwarenessBarUI.DOFade(0, 1);
         }
         else if (Awareness < 100 && AwarenessBarUI.alpha == 0)
         {
             AwarenessBarUI.DOFade(1, 1);
-        }
+        }*/
         if (recoverawareness == true)
         {
             Awareness = Mathf.Clamp(Awareness + awarenessmodifierRate.y, 0, 100);
@@ -98,7 +98,7 @@ public class PlayerManager : MonoBehaviour
             breathvalue = Mathf.Clamp(breathvalue + breathmodifier, 0, 100);
         breath = Mathf.Round(breathvalue);
         BreathBarUIFill.fillAmount = breathvalue / 100;
-        AwarenessBarUIFill.fillAmount = Awareness / 100;
+        //AwarenessBarUIFill.fillAmount = Awareness / 100;
         if (recoverbreath == true)
         {
             breathmodifier = breathmodifierRate.y;

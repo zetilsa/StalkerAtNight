@@ -76,7 +76,7 @@ public class CCTVManager : MonoBehaviour
                 }
                 buttons[currentCam].Fill.SetActive(false);
                 currentCam = target;
-                label.text = buttons[currentCam].Camera.GetComponent<Room>().RoomName;
+                
             if (buttons[target].isGlitching == false)
             {
                 DOVirtual.Float(0, 0.13f, .5f, v =>
@@ -86,8 +86,8 @@ public class CCTVManager : MonoBehaviour
             }
                 buttons[currentCam].Camera.SetActive(true);
                 buttons[currentCam].Fill.SetActive(true);
-
-                if (target == 5 || target == 6 || target == 7)
+            label.text = buttons[currentCam].Camera.GetComponent<Room>().RoomName;
+            if (target == 5 || target == 6 || target == 7)
                 {
                     Button.SetActive(true);
                 }

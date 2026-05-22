@@ -1,12 +1,13 @@
 using UnityEngine;
 using DG.Tweening;
-using System;
-using Unity.Mathematics;
 public class Drawer : MonoBehaviour
 {
+    [SerializeField] AudioClip[] clips;
+    [SerializeField] AudioSource src;
     [SerializeField] float Min;
     [SerializeField] float Max;
     [SerializeField] float time;
+    [SerializeField] Vector2 RandominPitch;
     bool transition;
     bool state;
     float movevalue;
@@ -41,7 +42,9 @@ public class Drawer : MonoBehaviour
             transition = true;
             if (state == false)
             {
-                transform.DOLocalMoveX(Max, .3f).OnComplete(() =>
+                src.pitch = Random.Range(RandominPitch.x, RandominPitch.y);
+                src.PlayOneShot(clips[1]);
+                transform.DOLocalMoveX(Max, time).OnComplete(() =>
                 {
                     state = true;
                     transition = false;
@@ -50,7 +53,9 @@ public class Drawer : MonoBehaviour
             else
             if (state == true)
             {
-                transform.DOLocalMoveX(Min, .3f).OnComplete(() =>
+                src.pitch = Random.Range(RandominPitch.x, RandominPitch.y);
+                src.PlayOneShot(clips[0]);
+                transform.DOLocalMoveX(Min, time).OnComplete(() =>
                 {
                     state = false;
                     transition = false;
