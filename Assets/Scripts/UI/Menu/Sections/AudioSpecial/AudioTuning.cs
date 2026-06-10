@@ -17,11 +17,13 @@ public class AudioTuning : MonoBehaviour
     public void SetBGMVolume(float volume)
     {
         GameSystem.instance.SetVolume("Music",(float)volume);
+        GameSystem.instance.DSL.SetData("BGM", volume);
     }
 
 
     public void SetSFXVolume(float volume)
     {
         GameSystem.instance.SetVolume("SFX", (float)volume);
+        GameSystem.instance.DSL.SetData("SFX", volume);
     }
 }

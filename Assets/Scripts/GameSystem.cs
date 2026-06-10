@@ -6,7 +6,7 @@ using System.Collections;
 public class GameSystem : MonoBehaviour
 {
     public static GameSystem instance { get; private set; }
-    [SerializeField]DataSaveLoader DSL;
+    public DataSaveLoader DSL;
     [SerializeField] NightPreset[] Nights;
     public NightPreset Night;
     public int SelectedNight;
@@ -25,6 +25,7 @@ public class GameSystem : MonoBehaviour
             Destroy(gameObject);
         }
             DontDestroyOnLoad(gameObject);
+        
     }
 
     // Update is called once per frame
@@ -50,6 +51,10 @@ public class GameSystem : MonoBehaviour
         SelectedNight = 0;
         SaveNight();
         StartGame();
+    }
+    public void Continue()
+    {
+
     }
     public void SelectNight(int i)
     {
@@ -84,7 +89,7 @@ public class GameSystem : MonoBehaviour
         // Konversi ke Decibel
         float dB = Mathf.Log10(volume) * 20;
 
-        Mixer.DOSetFloat("GameVolume", dB, 1);
+        Mixer.DOSetFloat("GameVolume", dB, time);
     }
 
     public void StartGame()

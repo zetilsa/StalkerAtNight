@@ -121,4 +121,25 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void FadeVolume()
+    {
+        if(GameSystem.instance != null)
+        {
+            DOVirtual.Float(0, 1, 1, v =>
+            {
+                GameSystem.instance.SetVolume(v);
+            });
+            print("pakeGamesystem");
+        }
+        else
+        {
+            print("gakpakeGamesystem");
+            DOVirtual.Float(-80, 0, 1, v =>
+            {
+                GameVolume = v;
+
+            }).SetEase(Ease.OutCubic);
+        }
+    }
 }

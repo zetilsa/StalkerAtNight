@@ -57,10 +57,8 @@ public class RaycastManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(EnableRaycast == true)
-        {
             RaycastHitUpdate();
-        }
+       
         
         ControllerUpdate();
     }
@@ -134,6 +132,8 @@ public class RaycastManager : MonoBehaviour
             Vector3 hitPoint = hitray.point;
 
             currentRaycastDistance = Vector3.Distance(cameraPos, hitPoint);
+            if (EnableRaycast == false) return;
+
             if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
             {
                 //set Selected Object for first time and check if the hit target was interactable, and then call CrosshairManager to change crosshair state

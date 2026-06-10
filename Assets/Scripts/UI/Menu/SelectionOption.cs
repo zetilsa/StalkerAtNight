@@ -9,6 +9,11 @@ public class SelectionOption : MonoBehaviour
     public string[] texts;
     public UnityEvent OnChanged;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public void ChangeData(int state)
+    {
+        value = state;
+        Label.text = texts[state];
+    }
     void Start()
     {
         

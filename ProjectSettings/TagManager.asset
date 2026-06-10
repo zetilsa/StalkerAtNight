@@ -15,14 +15,14 @@ TagManager:
   - InteractHitbox
   - IgnoreLampLight
   - EnemyMesh
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Boundaries
+  - JCRay
+  - Room1
+  - Room2
+  - Room3
+  - Room4
+  - Hallway01
+  - Vents
   - 
   - 
   - 
