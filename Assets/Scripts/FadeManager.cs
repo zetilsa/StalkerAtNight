@@ -15,11 +15,11 @@ public class FadeManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        SceneManager.sceneLoaded += SLoaded;
-
+        SLoaded();
     }
-    private void SLoaded(Scene scene, LoadSceneMode mode)
-        {
+    private void SLoaded()
+    {
+        cg.blocksRaycasts = true;
         GameSystem.instance.SetVolume(0);
         
         if (AutoFadeOnStart == true)
@@ -30,7 +30,7 @@ public class FadeManager : MonoBehaviour
                 GameSystem.instance.SetVolume(1, 2);
                 cg.DOFade(0, 2).OnComplete(() =>
                 {
-                    
+                    cg.blocksRaycasts = false;
                 });
                 
             }

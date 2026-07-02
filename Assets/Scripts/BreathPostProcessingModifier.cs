@@ -6,7 +6,7 @@ public class BreathPostProcessingModifier : MonoBehaviour
     [SerializeField] Vector2 VignetteValueRange;
     [SerializeField] Vector2 ExposureValueRange;
     [SerializeField] Vector2 ChromaticValueRange;
-    [SerializeField] Volume globalVolume;
+    
     private Vignette Vignette;
     private ChromaticAberration Chromatic;
     private ColorAdjustments colorAdjustments;
@@ -14,46 +14,17 @@ public class BreathPostProcessingModifier : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Get DOF from the Volume profile
-        if (globalVolume.profile.TryGet(out Vignette))
-        {
-            // Enable override so runtime changes take effect
-            Vignette.intensity.overrideState = true;
-        }
-        else
-        {
-            this.enabled = false;
-        }
-
-        if (globalVolume.profile.TryGet(out colorAdjustments))
-        {
-            // Enable override so runtime changes take effect
-            colorAdjustments.postExposure.overrideState = true;
-        }
-        else
-        {
-            this.enabled = false;
-        }
-
-        if (globalVolume.profile.TryGet(out Chromatic))
-        {
-            // Enable override so runtime changes take effect
-            Chromatic.intensity.overrideState = true;
-        }
-        else
-        {
-            this.enabled = false;
-        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
 
-            value = PlayerManager.instance.breath;
-            Vignette.intensity.value = Mathf.Lerp(VignetteValueRange.x, VignetteValueRange.y, value / 100);
-            colorAdjustments.postExposure.value = Mathf.Lerp(ExposureValueRange.x, ExposureValueRange.y, value / 100);
-        Chromatic.intensity.value = Mathf.Lerp(ChromaticValueRange.x, ChromaticValueRange.y, value / 100);
+        value = PlayerManager.instance.breath;
+        PostProcessingModifier.instance.VignetteIntensity = Mathf.Lerp(VignetteValueRange.x, VignetteValueRange.y, value / 100);
+        PostProcessingModifier.instance.PostExposure = Mathf.Lerp(ExposureValueRange.x, ExposureValueRange.y, value / 100);
+        PostProcessingModifier.instance.ChromaticIntensity = Mathf.Lerp(ChromaticValueRange.x, ChromaticValueRange.y, value / 100);
         
     }
 }

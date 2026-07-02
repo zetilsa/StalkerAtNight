@@ -29,6 +29,10 @@ public class CCTVManager : MonoBehaviour
     {
         buttons[currentCam].Camera.SetActive(true);
         label.text = buttons[currentCam].Camera.GetComponent<Room>().RoomName;
+        if (LocalizationManager.Instance != null)
+        {
+            LocalizationManager.Instance.Refresh();
+        }
     }
 
     void CleanUp()
@@ -87,6 +91,11 @@ public class CCTVManager : MonoBehaviour
                 buttons[currentCam].Camera.SetActive(true);
                 buttons[currentCam].Fill.SetActive(true);
             label.text = buttons[currentCam].Camera.GetComponent<Room>().RoomName;
+            if (LocalizationManager.Instance != null)
+            {
+                label.GetComponent<LocalizedText>().SetKey(label.text);
+                LocalizationManager.Instance.Refresh();
+            }
             if (target == 5 || target == 6 || target == 7)
                 {
                     Button.SetActive(true);

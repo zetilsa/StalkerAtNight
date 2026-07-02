@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
 
+    public AudioSource HeartBeatSFX;
+    public AudioSource BreathingSFX;
     public FirstPersonController MainFPS;
     public Transform CameraJoint;
     public bool started;
@@ -16,11 +19,11 @@ public class GameManager : MonoBehaviour
     PlayableDirector PlayableDirector;
     [SerializeField] GameObject GameOverUI;
     [SerializeField] AudioMixer mixer;
-    [SerializeField] float GameVolume;
     [SerializeField] PlayableDirector StartBedAnimator;
     [SerializeField] GameObject PostDeathUI;
     [SerializeField] GameObject WinUI;
     public CinemachineBrain Camera;
+    public Transform DefaultSpawnPoint;
     void OnEnable()
     {
         MainInput = new InputSystem_Actions();
@@ -41,17 +44,14 @@ public class GameManager : MonoBehaviour
     }
     private void Awake()
     {
-
+        if (LocalizationManager.Instance != null)
+        {
+            LocalizationManager.Instance.Reset();
+        }
     }
     private void Start()
     {
         StartBedAnimator.Play();
-
-    }
-
-    private void FixedUpdate()
-    {
-        mixer.SetFloat("GameVolume", GameVolume);
     }
     public void StartGame()
     {
@@ -63,11 +63,21 @@ public class GameManager : MonoBehaviour
             MainFPS.playerCanMove = true;
             MainFPS.cameraCanMove = true;
             MainFPS.enableSprint = true;
+
+            IEnumerator GuideMove()
+            {
+                GuideTextManager.instance.SetText(new string[1] { "[WASD] Text_Guide06" });
+                GuideTextManager.instance.Show();
+                yield return new WaitForSeconds(4);
+                GuideTextManager.instance.Hide();
+            }
+            StartCoroutine(GuideMove());
         }
     }
 
     public void Win()
     {
+        InGamePauseSystem.instance.EnablePausing = false;
         WinUI.SetActive(true);
         //DOVirtual.Float(0, -80, 1, v =>
         //{
@@ -75,6 +85,11 @@ public class GameManager : MonoBehaviour
         //}).SetEase(Ease.InCubic);
         
         AIManager.instance.StopTick();
+    }
+    public void GoThankyou()
+    {
+        SceneManager.LoadScene(3);
+        Time.timeScale = 1;
     }
     public void DoneTransition()
     {
@@ -109,27 +124,33 @@ public class GameManager : MonoBehaviour
     public void PostJumpscare()
     {
         MainFPS.gameObject.SetActive(false);
-        GameVolume = -80;
-        PostDeathUI.SetActive(true);
+        if (GameSystem.instance != null)
+        {
+            GameSystem.instance.SetVolume(0, 1);
+        }
+        else
+        {
+            GameManager.instance.mixer.SetFloat("GameVolume", -80);
+        }
+            PostDeathUI.SetActive(true);
 
     }
     public void GoRetry()
     {
         SceneManager.LoadScene(2);
+        Time.timeScale = 1;
     }
     public void GoMainMenu()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
 
     public void FadeVolume()
     {
         if(GameSystem.instance != null)
         {
-            DOVirtual.Float(0, 1, 1, v =>
-            {
-                GameSystem.instance.SetVolume(v);
-            });
+            GameSystem.instance.SetVolume(1, 3);
             print("pakeGamesystem");
         }
         else
@@ -137,9 +158,10 @@ public class GameManager : MonoBehaviour
             print("gakpakeGamesystem");
             DOVirtual.Float(-80, 0, 1, v =>
             {
-                GameVolume = v;
+                mixer.SetFloat("GameVolume", 0);
 
             }).SetEase(Ease.OutCubic);
+
         }
     }
 }

@@ -52,18 +52,33 @@ public class JumpscareSpawner : MonoBehaviour
     }
     public void Jumpscare()
     {
-        GameManager.instance.SetCameraBlendValue(.3f);
         JCRay SpawnPoint = PlayerJumpscareSpawnChecker.current.GetJumpscarePoint();
-        InGamePauseSystem.instance.EnablePausing = false;
-        Vector3 Jumpscarepoint = SpawnPoint.pos.position;
-        Transform JumpscareInstance = Instantiate(Templates[0],new Vector3(Jumpscarepoint.x, 0.512f, Jumpscarepoint.z),SpawnPoint.pos.rotation).transform;
-        
-       
-        
+        if (SpawnPoint == null)
+        {
+            GameManager.instance.SetCameraBlendValue(.1f);
 
-        PlayerManager.instance.ChangeControlState(false, false, false, false, false, true, false, true, false);
-        
-        GameManager.instance.MainFPS.enabled = false;
+            InGamePauseSystem.instance.EnablePausing = false;
+            Transform Jumpscarepoint = PlayerJumpscareSpawnChecker.current.FrontPlayerPoint;
+            Transform JumpscareInstance = Instantiate(Templates[1], Jumpscarepoint.position, Jumpscarepoint.rotation).transform;
+            PlayerManager.instance.ChangeControlState(false, false, false, false, false, true, false, true, false);
+
+            GameManager.instance.MainFPS.enabled = false;
+        }
+        else
+        {
+            GameManager.instance.SetCameraBlendValue(.3f);
+
+            InGamePauseSystem.instance.EnablePausing = false;
+            Vector3 Jumpscarepoint = SpawnPoint.pos.position;
+            Transform JumpscareInstance = Instantiate(Templates[0], new Vector3(Jumpscarepoint.x, 0.512f, Jumpscarepoint.z), SpawnPoint.pos.rotation).transform;
+
+
+
+
+            PlayerManager.instance.ChangeControlState(false, false, false, false, false, true, false, true, false);
+
+            GameManager.instance.MainFPS.enabled = false;
+        }
         
     }
 }

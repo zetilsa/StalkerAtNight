@@ -114,10 +114,13 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetButtonDown("Mechanic1"))
         {
             recoverbreath = false;
+
+            GameManager.instance.BreathingSFX.mute = true;
         }
         else if (Input.GetButtonUp("Mechanic1"))
         {
             recoverbreath = true;
+            GameManager.instance.BreathingSFX.mute = false;
         }
 
         if (breath == 0 && GameManager.instance.started == true)
@@ -141,7 +144,7 @@ public class PlayerManager : MonoBehaviour
     }
     void Interact(InputAction.CallbackContext context)
     {
-        if (IsHiding == true && Transition == false)
+        if (IsHiding == true && Transition == false && RaycastManager.Instance.EnableRaycast == true)
         {
 
                 Transition = true;
@@ -156,7 +159,17 @@ public class PlayerManager : MonoBehaviour
         if (id == "Hide")
         {
             IsHiding = !IsHiding;
-            Transition = false;
+            if(IsHiding == true)
+            {
+                GameManager.instance.HeartBeatSFX.mute = false;
+                GameManager.instance.BreathingSFX.mute = false;
+            }
+            else if(IsHiding == false)
+            {
+                GameManager.instance.HeartBeatSFX.mute = true;
+                GameManager.instance.BreathingSFX.mute = true;
+            }
+                Transition = false;
 
         }
 

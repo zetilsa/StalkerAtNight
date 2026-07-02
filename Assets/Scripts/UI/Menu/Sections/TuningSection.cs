@@ -20,7 +20,11 @@ public class TuningSection : MonoBehaviour
     {
         foreach (SelectionOption option in Options)
         {
-            DataSaveLoader.instance.SetData(option.gameObject.name, option.value);
+            if (DataSaveLoader.instance == null) return;
+
+                Debug.LogError($"saved {option.gameObject.name} {option.value}");
+                DataSaveLoader.instance.SetData(option.gameObject.name, option.value);
+
         }
     }
 }

@@ -31,6 +31,7 @@ public class NightClock : MonoBehaviour
     public void Sync(int hour)
     {
         currentHour = hour;
+        UpdateClockDisplay();
     }
     void AdvanceHour()
     {
@@ -51,6 +52,7 @@ public class NightClock : MonoBehaviour
 
     void UpdateClockDisplay()
     {
-        clockText.text = $"{currentHour} AM\nNight {nightNumber}";
+        //clockText.text = $"{currentHour} AM\nNight {nightNumber}";
+        clockText.text = $"{currentHour} AM";
     }
 }

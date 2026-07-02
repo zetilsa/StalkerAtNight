@@ -19,12 +19,17 @@ public class GameSystem : MonoBehaviour
         if (GameSystem.instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+            gameObject.name = "CachedGameSystem";
         }
         else
         {
-            Destroy(gameObject);
-        }
+            Destroy(GameSystem.instance);
+            instance = this;
             DontDestroyOnLoad(gameObject);
+            gameObject.name = "CachedGameSystem";
+        }
+            
         
     }
 

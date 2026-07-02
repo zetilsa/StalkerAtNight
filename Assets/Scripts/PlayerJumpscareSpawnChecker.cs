@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerJumpscareSpawnChecker : MonoBehaviour
 {
     public static PlayerJumpscareSpawnChecker current { get; private set; }
-
+    public Transform FrontPlayerPoint;
     /*
     public float jarakRaycast = 5f;
 
@@ -81,8 +81,7 @@ public class PlayerJumpscareSpawnChecker : MonoBehaviour
 
             return CorrectPoint[point];
         }
-    } 
-
+    }
 
 
     }

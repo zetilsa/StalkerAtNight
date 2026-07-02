@@ -7,6 +7,9 @@ public class InGamePauseSystem : MonoBehaviour
 {
     public static InGamePauseSystem instance {  get; private set; }
     public bool EnablePausing;
+    [SerializeField] bool currentCursorVisible;
+    [SerializeField] CursorLockMode currentCursorLockMode;
+    [SerializeField] bool currentRaycastEnabled;
     [SerializeField] CanvasGroup cg;
     bool currentpausestate;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,7 +21,7 @@ public class InGamePauseSystem : MonoBehaviour
     {
         Application.focusChanged += v =>
         {
-            if(v == false)
+            if(v == false && EnablePausing == true)
             {
                 Pause(true);
             }
@@ -32,31 +35,43 @@ public class InGamePauseSystem : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Pause(true);
+                Pause(!currentpausestate);
             }
         }
     }
 
     public void Pause(bool state)
     {
+        EnablePausing = false;
         if (currentpausestate != state)
         {
             currentpausestate = state;
             if (currentpausestate == true)
             {
-                PlayerManager.instance.ChangeControlState(false, false, false, false, false, true, false, false, false);
+                currentCursorVisible = Cursor.visible;
+                currentCursorLockMode = Cursor.lockState;
+                currentRaycastEnabled = RaycastManager.Instance.EnableRaycast;
+
+                RaycastManager.Instance.EnableRaycast = false;
+                //PlayerManager.instance.ChangeControlState(false, false, false, false, false, true, false, false, false);
                 DOVirtual.Float(1, 0, .5f, v =>
                 {
                     Time.timeScale = v;
                 }).SetUpdate(true);
                 cg.DOFade(1, .5f).OnComplete(() =>
                 {
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                     cg.blocksRaycasts = true;
-                    PlayerManager.instance.ChangeControlState(false, false, false, false, false, true, true, false, false);
+                    //PlayerManager.instance.ChangeControlState(false, false, false, false, false, true, true, false, false);
+
+                    EnablePausing = true;
                 }).SetUpdate(true);
             }
             else if (currentpausestate == false)
             {
+                Cursor.lockState = currentCursorLockMode;
+                Cursor.visible = currentCursorVisible;
                 cg.blocksRaycasts = false;
                 DOVirtual.Float(0, 1, .5f, v =>
                 {
@@ -64,7 +79,9 @@ public class InGamePauseSystem : MonoBehaviour
                 }).SetUpdate(true);
                 cg.DOFade(0, .5f).OnComplete(() =>
                 {
-                    PlayerManager.instance.ChangeControlState(true, true, true, true, true, false, false, true, false);
+                    RaycastManager.Instance.EnableRaycast = currentRaycastEnabled;
+                    //PlayerManager.instance.ChangeControlState(true, true, true, true, true, false, false, true, false);
+                    EnablePausing = true;
                 }).SetUpdate(true);
             }
         }

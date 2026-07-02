@@ -40,9 +40,66 @@ MonoBehaviour:
   - key: Language
     indonesian: Bahasa
     english: Language
-  - key: Game
-    indonesian: Permainan
-    english: Game
+  - key: Resolution
+    indonesian: Resolusi
+    english: Resolution
   - key: Misc
     indonesian: Lainnya
     english: Misc
+  - key: GFX Quality
+    indonesian: Kualitas GFX
+    english: GFX Quality
+  - key: Max FPS
+    indonesian: Batas FPS
+    english: Max FPS
+  - key: Night
+    indonesian: Malam
+    english: Night
+  - key: Begin
+    indonesian: Mulai
+    english: Begin
+  - key: Return
+    indonesian: Kembali
+    english: Return
+  - key: Text_Guide01
+    indonesian: Tarik Mouse Sambil Klik Tombol Mouse Kanan Untuk Melihat Area Sekitar.
+    english: Drag with Right Mouse Button to look around.
+  - key: Text_Guide02
+    indonesian: << Berbaringlah di kasur agar pulih
+    english: '<< Lay on the bed to recover '
+  - key: Text_Guide03
+    indonesian: Untuk Bangun
+    english: To Get Up
+  - key: Text_Guide04
+    indonesian: Untuk Menahan Napas
+    english: To Hold Breath
+  - key: Sitting Room
+    indonesian: Ruang Tamu
+    english: Sitting Room
+  - key: Family Room
+    indonesian: Ruang Keluarga
+    english: Family Room
+  - key: Kitchen
+    indonesian: Dapur
+    english: Kitchen
+  - key: Hallway
+    indonesian: Lorong
+    english: Hallway
+  - key: Text_Guide05
+    indonesian: Untuk Keluar
+    english: To Get out
+  - key: UI_Thankyou01
+    indonesian: Terimakasih telah memainkan demo kami
+    english: 'Thankyou for playing our demo '
+  - key: UI_Thankyou02
+    indonesian: Nantikan versi lengkapnya Rotten Night
+    english: Stay tuned for the full version of Rotten Night
+  - key: Input_LMB
+    indonesian: Tombol Mouse Kiri
+    english: Left Mouse Button
+  - key: Input_Space
+    indonesian: Spasi
+    english: Space
+  - key: Text_Guide06
+    indonesian: Untuk Berjalan
+    english: To Move Around

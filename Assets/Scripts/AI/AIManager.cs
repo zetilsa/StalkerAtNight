@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
@@ -17,6 +18,7 @@ public class AIManager : MonoBehaviour
 
 
     [SerializeField] bool AutoStartTick;
+    [SerializeField] int StartTickAt;
     // opo iki cah
     void Awake()
     {
@@ -24,6 +26,15 @@ public class AIManager : MonoBehaviour
         if (AutoStartTick)
         {
             StartTick();
+        }
+        else
+        {
+            IEnumerator Wait()
+            {
+                yield return new WaitForSeconds(StartTickAt);
+                StartTick();
+            }
+            StartCoroutine(Wait());
         }
     }
 

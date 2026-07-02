@@ -16,11 +16,24 @@ public class DataSaveLoader : MonoBehaviour
 
     void Awake()
     {
+        print("DSL AWAKEN");
         instance = this;
         _savePath = Path.Combine(Application.persistentDataPath, "Ingatan.mind");
-        LoadAllFromFile();
+        if (!File.Exists(_savePath))
+        {
+            print("File doesnt exist");
+            SetDefaultData();
+        }
+        else
+        {
+            LoadAllFromFile();
+        }
     }
-
+    public void SetDefaultData()
+    {
+        print("Setting The Default Data");
+        
+    }
     public void SetData(string key, object value)
     {
         if (_saveData.ContainsKey(key)) _saveData[key] = value;
@@ -36,6 +49,7 @@ public class DataSaveLoader : MonoBehaviour
         try
         {
             string json = JsonConvert.SerializeObject(_saveData[key]);
+            Debug.LogError($"Loaded {JsonConvert.DeserializeObject<T>(json)}");
             return JsonConvert.DeserializeObject<T>(json);
         }
         catch (Exception e)

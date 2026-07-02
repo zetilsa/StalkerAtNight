@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AudioTuning : MonoBehaviour
 {
@@ -25,5 +26,11 @@ public class AudioTuning : MonoBehaviour
     {
         GameSystem.instance.SetVolume("SFX", (float)volume);
         GameSystem.instance.DSL.SetData("SFX", volume);
+    }
+
+    public void ApplyDefault()
+    {
+        GameSystem.instance.DSL.SetData("SFX", 1);
+        GameSystem.instance.DSL.SetData("BGM", 1);
     }
 }

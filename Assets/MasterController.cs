@@ -40,6 +40,7 @@ public class MasterController : MonoBehaviour
             GameManager.instance.MainInput.Player.Enable();
             GameManager.instance.MainInput.UI.Enable();
             GameManager.instance.MainInput.Computer.Enable();
+            RaycastManager.Instance.EnableRaycast = true;
 
         }
         else if(ControlEnabled == false)
@@ -47,6 +48,7 @@ public class MasterController : MonoBehaviour
             GameManager.instance.MainInput.Player.Disable();
             GameManager.instance.MainInput.UI.Disable();
             GameManager.instance.MainInput.Computer.Disable();
+            RaycastManager.Instance.EnableRaycast = false;
 
         }
     }

@@ -896,7 +896,8 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 
 				#ifdef _WRITE_RENDERING_LAYERS
 					uint renderingLayers = GetMeshRenderingLayer();
-					outRenderingLayers = float4( EncodeMeshRenderingLayer( renderingLayers ), 0, 0, 0 );
+					// Replaced the missing 1-parameter function with its actual mathematical equivalent
+					outRenderingLayers = float4( (renderingLayers + 0.5) / 255.0, 0, 0, 0 );
 				#endif
 
 				return color;
@@ -2741,10 +2742,10 @@ Shader "Polytope Studio/PT_Vegetation_Plants_Shader"
 					#endif
 					outNormalWS = half4(NormalizeNormalPerPixel(normalWS), 0.0);
 				#endif
-
 				#ifdef _WRITE_RENDERING_LAYERS
 					uint renderingLayers = GetMeshRenderingLayer();
-					outRenderingLayers = float4(EncodeMeshRenderingLayer(renderingLayers), 0, 0, 0);
+					// Replaced the missing 1-parameter function with its actual mathematical equivalent
+					outRenderingLayers = float4( (renderingLayers + 0.5) / 255.0, 0, 0, 0 );
 				#endif
 			}
 			ENDHLSL

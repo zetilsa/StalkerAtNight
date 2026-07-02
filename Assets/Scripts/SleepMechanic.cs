@@ -27,7 +27,7 @@ public class SleepMechanic : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -38,17 +38,22 @@ public class SleepMechanic : MonoBehaviour
 
     IEnumerator ExitBed()
     {
-
-        EyeViewManager.Instance.Blink(0.25f);
-        yield return new WaitForSeconds(0.25f);
-        if (playerManager.OnBed == true)
+        if (RaycastManager.Instance.OnCameraTransition == false)
         {
-            playerManager.OnBed = false;
-            CrosshairManager.instance.SetShow(true);
-            playerManager.BedCamera.SetActive(false);
-            playerManager.ChangeControlState(true, true, true, true, true, true, false, true, false);
-            playerManager.DoSomething("UnSleep");
-        }
+            RaycastManager.Instance.OnCameraTransition = true;
+            EyeViewManager.Instance.Blink(0.25f);
+            yield return new WaitForSeconds(0.25f);
 
+            if (playerManager.OnBed == true)
+            {
+                playerManager.OnBed = false;
+                GuideTextManager.instance.Hide();
+                CrosshairManager.instance.SetShow(true);
+                playerManager.BedCamera.SetActive(false);
+                playerManager.ChangeControlState(true, true, true, true, true, true, false, true, false);
+                playerManager.DoSomething("UnSleep");
+                RaycastManager.Instance.OnCameraTransition = false;
+            }
+        }
     }
 }

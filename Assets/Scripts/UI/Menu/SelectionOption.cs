@@ -13,6 +13,13 @@ public class SelectionOption : MonoBehaviour
     {
         value = state;
         Label.text = texts[state];
+        OnChanged.Invoke();
+    }
+    public void ChangeData(int state, bool DontInvoke)
+    {
+        value = state;
+        Label.text = texts[state];
+        
     }
     void Start()
     {

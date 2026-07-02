@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using Newtonsoft.Json.Bson;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] AudioMixer Mixer;
@@ -18,7 +19,10 @@ public class MenuManager : MonoBehaviour
     {
         
     }
-
+    public void Leave()
+    {
+        Application.Quit();
+    }
     public void StartGame(int SceneID)
     {
         IEnumerator w()

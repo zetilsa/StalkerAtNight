@@ -21,9 +21,18 @@ public class GuideTextManager : MonoBehaviour
 
     public void SetText(string[] Texts)
     {
-        for (int i = 0; i < 2; i++)
+        foreach (TextMeshProUGUI guide in Guides)
+        {
+            guide.text = "";
+        }
+        for (int i = 0; i < Texts.Length; i++)
         {
             Guides[i].text = Texts[i];
+            Guides[i].GetComponent<LocalizedText>().SetKey(Texts[i]);
+        }
+        if (LocalizationManager.Instance != null)
+        {
+            LocalizationManager.Instance.Refresh();
         }
     }
 

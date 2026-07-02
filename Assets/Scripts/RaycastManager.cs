@@ -29,6 +29,8 @@ public class RaycastManager : MonoBehaviour
     //Controller
     [SerializeField] OnComputerControl OCC;
 
+    public bool OnCameraTransition;
+
     private bool OnComputer;
     private bool onTransition;
 
@@ -98,6 +100,7 @@ public class RaycastManager : MonoBehaviour
     }
     IEnumerator exitcam()
     {
+        GuideTextManager.instance.Hide();
         CCTVManager.instance.OnUnUse();
         EyeViewManager.Instance.Blink(0.25f);
         yield return new WaitForSeconds(0.25f);
@@ -180,7 +183,7 @@ public class RaycastManager : MonoBehaviour
                         switch (tag)
                         {
                             case "Bed":
-                                if (GMinst.MainInput.Player.Interact.triggered)
+                                if (Input.GetMouseButtonDown(0))
                                 {
                                     GMinst.SetCameraBlendValue(0);
                                     StartCoroutine(EnterBed());
@@ -289,7 +292,8 @@ public class RaycastManager : MonoBehaviour
                                 {
                                     if (GMinst.MainInput.Player.Interact.triggered && PlayerManager.instance.Transition == false && onTransition == false)
                                     {
-                                        GuideTextManager.instance.SetText(new string[2] { "[LMB] to Get Out", "Hold [RMB] to Hold Breath" });
+                                        //GuideTextManager.instance.SetText(new string[2] { "[LMB] to Get Out", "Hold [RMB] to Hold Breath" });
+                                        GuideTextManager.instance.SetText(new string[1] { "[Input_LMB] Text_Guide05" });
                                         PlayerMgr.ChangeControlState(true,false,false,false,true,true,false, true,true);
                                         Selected.GetComponent<ClosetManager>().Hide(true);
                                     }
@@ -320,12 +324,14 @@ public class RaycastManager : MonoBehaviour
     {
         EyeViewManager.Instance.Blink(0.25f);
         yield return new WaitForSeconds(0.25f);
+        GuideTextManager.instance.SetText(new string[1] { "[Input_Space] Text_Guide03" });
         if (PlayerMgr.OnComputer == false)
         {
 
             PlayerMgr.OnComputer = true;
             PlayerMgr.ChangeControlState(false,false,false,false,false,true,true,false,false);
             CrosshairManager.instance.SetShow(false);
+            GuideTextManager.instance.Show();
 
             if (GMinst.MainFPS.useCinemachine == false)
             {
@@ -345,17 +351,23 @@ public class RaycastManager : MonoBehaviour
 
     IEnumerator EnterBed()
     {
-        EyeViewManager.Instance.Blink(0.25f);
-        yield return new WaitForSeconds(0.25f);
-        if (PlayerMgr.OnBed == false)
+        if (OnCameraTransition == false)
         {
-            PlayerMgr.OnBed = true;
-            PlayerMgr.ChangeControlState(false, false, false, false, false, true, false, true, false);
-            CrosshairManager.instance.SetShow(false);
-            
-            PlayerMgr.BedCamera.SetActive(true);
-            PlayerMgr.DoSomething("Sleep");
-            
+            OnCameraTransition = true;
+            EyeViewManager.Instance.Blink(0.25f);
+            yield return new WaitForSeconds(0.25f);
+            GuideTextManager.instance.SetText(new string[1] { "[Input_Space] Text_Guide03" });
+            if (PlayerMgr.OnBed == false)
+            {
+                PlayerMgr.OnBed = true;
+                GuideTextManager.instance.Show();
+                PlayerMgr.ChangeControlState(false, false, false, false, false, true, false, true, false);
+                CrosshairManager.instance.SetShow(false);
+
+                PlayerMgr.BedCamera.SetActive(true);
+                PlayerMgr.DoSomething("Sleep");
+                OnCameraTransition = false;
+            }
         }
 
     }
